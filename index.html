@@ -1,32 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
   <head>
+    <!-- Meta Tags & Document Information -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Reservation</title>
-    <link rel="stylesheet" href="modal.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+      content="Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !">
+    <meta name="keywords"
+      content="GameOn, Marathon national de jeux vidéos, Jeux vidéos, Gaming, Tournoi, Évènement, Réservation, Places limitées">
+    <meta name="author" content="OpenClassrooms">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="GameOn - Marathon national de jeux vidéos">
+    <meta property="og:description"
+      content="Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="assets/img/png/bg_img.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GameOn - Marathon national de jeux vidéos">
+    <meta name="twitter:description"
+      content="Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !">
+    <meta name="twitter:image" content="assets/img/png/bg_img.jpg">
+
+    <title>GameOn - Marathon national de jeux vidéos</title>
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg">
+    <link rel="shortcut icon" href="/assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="GameOn">
+    <link rel="manifest" href="./assets/manifest.json">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+
+    <!-- Internal Resources -->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/select.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/animation.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer">
   </head>
 
   <body>
-    <!-- Navbar -->
-    <div class="topnav" id="myTopnav">
-      <div class="header-logo">
-        <img alt="logo" src="Logo.png" width="auto" height="auto" />
-      </div>
-      <div class="main-navbar">
-        <a href="#" class="active"><span>Accueil</span></a>
-        <a href="#"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
-        <a href="javascript:void(0);" class="icon" onclick="editNav()">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
-    </div>
+    <!-- Header -->
+    <header>
+      <nav class="main_navbar">
+        <img src="./assets/img/png/logo.png" alt="GameOn logo" height="30" loading="lazy">
+        <ul class="navbar_links_list">
+          <li><a href="#" class="active">Accueil</a></li>
+          <li><a href="#">Détails de l'évènement</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Évènements passés</a></li>
+          <!-- <li><a href="javascript:void(0);" class="icon" onclick="editNav()"><i class="fa fa-bars"></i></a></li> -->
+        </ul>
+      </nav>
+    </header>
+
 
     <!-- Main -->
     <main>
@@ -46,7 +90,7 @@
           </button>
         </div>
         <div class="hero-img">
-          <img src="./bg_img.jpg" alt="img" />
+          <img src="./assets/img/png/bg_img.jpg" alt="img" />
         </div>
         <button class="btn-signup modal-btn">
           je m'inscris
@@ -144,7 +188,7 @@
         Copyright 2014 - 2022, GameOn Inc.
       </p>
     </footer>
-    <script src="modal.js"></script>
+    <script src="./assets/js/modal.js"></script>
   </body>
 
 </html>
