@@ -32,7 +32,7 @@
   /* Layout */
   --size-half: 50%;
   --size-full: 100%;
-  --container-max-width: 768px;
+  --container-max-width: 1024px;
 
   /* Shadows */
   --box-shadow-loader: 0 3px 0 var(--color-white);
@@ -117,76 +117,53 @@ header {
   padding: 0 var(--space-lg);
 }
 
+/* Button with Header menu */
 .header_nav_links {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   position: relative;
 }
 
-.dropbtn {
+.header_nav_links button {
   display: block;
   background: transparent;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.header_nav_links button i {
   color: var(--color-primary);
   font-size: 1.5rem;
 }
 
-.dropdown_content {
-  flex-direction: column;
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: var(--color-white);
-  min-width: 200px;
-  box-shadow: var(--box-shadow-medium);
-  z-index: 1000;
-  border-radius: 4px;
-  overflow: hidden;
-  width: auto;
-  margin-top: var(--space-sm);
-  gap: 0;
+.header_nav_links button:hover {
+  transform: scale(1.1);
 }
 
-.dropdown_content a {
-  color: var(--color-text);
+.mobile_toggle_list {
+  display: grid;
+  gap: 10px;
+}
+
+.mobile_toggle_list li {
+  display: grid;
+  grid-template-columns: 1fr;
   padding: var(--space-md);
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.2s ease;
-  border-bottom: 1px solid #f1f1f1;
-  border-radius: 0;
 }
 
-.dropdown_content a:last-child {
-  border-bottom: none;
-  border-radius: 0 0 4px 4px;
-}
-
-.dropdown_content a:first-child {
-  border-radius: 4px 4px 0 0;
-}
-
-.dropdown_content a:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown_content a.active {
+.mobile_toggle_list li.active {
   background-color: var(--color-primary);
+  border-radius: 4px 4px 0 0;
   color: var(--color-white);
 }
 
-.show {
-  display: flex;
+.mobile_toggle_list li:not(:first-child):hover {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
 }
 
 /* =========================
     Main Components
    ========================= */
-
 .main_container {
   display: flex;
   flex-direction: column;
@@ -212,52 +189,57 @@ footer p {
 /* =========================
       Media Queries
     ========================= */
-@media (min-width: 768px) {
-  body {
-    max-width: 1300px;
+/* Mobile To Desktop */
+@media (max-width: 1024px) {
+  .mobile_menu_toggle {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    right: 0;
+    min-width: 200px;
+    min-height: 200px;
+    margin-top: var(--space-sm);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow-medium);
+    background-color: var(--color-white);
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  }
+
+  /* On Click */
+  .mobile_menu_toggle.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 }
 
-@media (min-width: 1024px) {
-  /* Header Dropdown */
-  .dropbtn {
+@media (min-width: 1025px) {
+  body {
+    max-width: 1200px;
+  }
+
+  .header_nav_links button {
     display: none;
   }
 
-  .dropdown_content {
+  /* Mobile Header menu - Display as dropdown */
+  .mobile_menu_toggle {
+    transition: none;
+    transform: none;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .mobile_menu_toggle ul {
     display: flex;
     flex-direction: row;
-    position: static;
-    top: auto;
-    right: auto;
-    background-color: transparent;
-    box-shadow: none;
-    min-width: auto;
-    width: auto;
-    margin-top: 0;
     gap: var(--space-lg);
-  }
 
-  .dropdown_content a {
-    padding: var(--space-sm) var(--space-md);
-    border-radius: 4px;
-    border-bottom: none;
-    white-space: nowrap;
-    font-size: 1rem;
-  }
-
-  .dropdown_content a:hover {
-    background-color: #f1f1f1;
-  }
-
-  .dropdown_content a.active {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-  }
-
-  .dropdown_content a:first-child,
-  .dropdown_content a:last-child {
-    border-radius: 4px;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   /* Main */

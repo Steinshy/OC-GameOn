@@ -1,8 +1,8 @@
 const navDropdown = {
   init() {
     this.dropdown = document.getElementById("navDropdown");
-    this.dropdownButton = document.querySelector(".dropbtn");
-    this.breakpoint = 1300;
+    this.dropdownButton = document.getElementById("btn_menu_toggle");
+    this.breakpoint = 1024;
 
     this.setupEventListeners();
   },
