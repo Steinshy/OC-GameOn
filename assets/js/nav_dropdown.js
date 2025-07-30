@@ -1,40 +1,17 @@
-const navDropdown = {
-  init() {
-    this.dropdown = document.getElementById("navDropdown");
-    this.dropdownButton = document.getElementById("btn_menu_toggle");
-    this.breakpoint = 1024;
+document.addEventListener("DOMContentLoaded", () => {
+  const dropdown = document.getElementById("navDropdown");
+  const btn = document.getElementById("btn_menu_toggle");
+  const breakpoint = 1024;
 
-    this.setupEventListeners();
-  },
+  btn.addEventListener("click", () => dropdown.classList.toggle("show"));
 
-  setupEventListeners() {
-    this.dropdownButton.addEventListener("click", () => this.toggle());
-    document.addEventListener("click", (e) => this.handleDocumentClick(e));
-    window.addEventListener("resize", () => this.handleResize());
-  },
-
-  toggle() {
-    this.dropdown.classList.toggle("show");
-  },
-
-  close() {
-    this.dropdown.classList.remove("show");
-  },
-
-  handleDocumentClick(event) {
-    if (
-      !this.dropdown.contains(event.target) &&
-      !this.dropdownButton.contains(event.target)
-    ) {
-      this.close();
+  document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target) && !btn.contains(e.target)) {
+      dropdown.classList.remove("show");
     }
-  },
+  });
 
-  handleResize() {
-    if (window.innerWidth >= this.breakpoint) {
-      this.close();
-    }
-  },
-};
-
-document.addEventListener("DOMContentLoaded", () => navDropdown.init());
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= breakpoint) dropdown.classList.remove("show");
+  });
+});

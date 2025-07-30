@@ -1,21 +1,41 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
+const modal = {
+  signupBtn: document.getElementById("btn_signup"),
+  element: document.querySelector(".modal_container"),
+  closeBtn: document.querySelector(".close-btn"),
 
-// DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
+  init() {
+    this.hide();
+    this.signupBtn?.addEventListener("click", () => this.show());
+    this.closeBtn?.addEventListener("click", () => this.hide());
 
-// launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+    this.element?.addEventListener("click", (e) => {
+      if (e.target === this.element) this.hide();
+    });
 
-// launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && this.isOpen()) this.hide();
+    });
+  },
+
+  show() {
+    if (!this.element) return;
+    this.element.style.display = "block";
+    this.element.setAttribute("aria-hidden", "false");
+    this.element.focus();
+    document.body.style.overflow = "hidden";
+  },
+
+  hide() {
+    if (!this.element) return;
+    this.element.style.display = "none";
+    this.element.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    this.signupBtn?.focus();
+  },
+
+  isOpen() {
+    return this.element?.style.display === "block";
+  },
+};
+
+document.addEventListener("DOMContentLoaded", () => modal.init());
