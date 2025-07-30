@@ -75,9 +75,114 @@
     <main>
       <div class="main_container">
         <h1>Marathon national de jeux vidéos</h1>
-        <p>Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</p>
+        <p>Vous aimez jouer ? Notre prochain évènement gaming est ouvert auxréservations... Places limitées !</p>
         <img src="./assets/img/png/bg_img.jpg" alt="img">
-        <button class="btn_signup">Je m'inscris</button>
+        <button id="btn_signup">Je m'inscris</button>
+      </div>
+
+      <!-- Event Modal -->
+      <div class="modal_container" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        aria-describedby="modal-description">
+        <div class="modal_content">
+          <button type="button" class="close-btn" aria-label="Fermer la modal">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal_body">
+          <h2 id="modal-title">Inscription au tournoi GameOn</h2>
+          <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
+
+          <!-- Form -->
+          <form name="register" method="get">
+            <div class="form_data">
+              <label for="first_name">Prénom <span aria-label="requis">*</span></label>
+              <input id="first_name" type="text" name="first_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
+                placeholder="Entrez votre Prénom" aria-describedby="first_name_error" required />
+              <div id="first_name_error" class="error-message" aria-live="polite"></div>
+            </div>
+
+            <div class="form_data">
+              <label for="last_name">Nom <span aria-label="requis">*</span></label>
+              <input id="last_name" type="text" name="last_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
+                placeholder="Entrez votre Nom" aria-describedby="last_name_error" required />
+              <div id="last_name_error" class="error-message" aria-live="polite"></div>
+            </div>
+
+            <div class="form_data">
+              <label>E-mail <span aria-label="requis">*</span></label>
+              <input id="email" type="email" name="email" placeholder="Entrez votre adresse e-mail" required />
+            </div>
+
+            <div class="form_data">
+              <label for="birthdate">Date de naissance <span aria-label="requis">*</span></label>
+              <input id="birthdate" type="date" name="birthdate" aria-describedby="birthdate_help birthdate_error"
+                required />
+              <div id="birthdate_error" class="error-message" aria-live="polite"></div>
+            </div>
+
+            <div class="form_data">
+              <label>À combien de tournois GameOn avez-vous déjà participé ? <span aria-label="requis">*</span></label>
+              <input id="tournament_count" type="number" name="tournament_count" min="0" max="99" placeholder="0"
+                required />
+            </div>
+
+            <!-- Tournoi -->
+            <fieldset class="form_data">
+              <legend>À quel tournoi souhaitez-vous participer cette année ?</legend>
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input type="radio" id="NewYork" name="location" value="New York" required />
+                  <label for="NewYork">New York</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="SanFrancisco" name="location" value="San Francisco" required />
+                  <label for="SanFrancisco">San Francisco</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="Seattle" name="location" value="Seattle" required />
+                  <label for="Seattle">Seattle</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="Chicago" name="location" value="Chicago" required />
+                  <label for="Chicago">Chicago</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="Boston" name="location" value="Boston" required />
+                  <label for="Boston">Boston</label>
+                </div>
+                <div class="radio-item">
+                  <input type="radio" id="Portland" name="location" value="Portland" required />
+                  <label for="Portland">Portland</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Checkbox Terms of Service -->
+            <fieldset class="form_data">
+              <legend>Conditions et notifications</legend>
+              <div class="checkbox-group">
+
+                <div class="checkbox-item">
+                  <input type="checkbox" id="terms_of_service" name="terms_of_service" required
+                    aria-describedby="terms_error" />
+                  <label for="terms_of_service">J'ai lu et accepté les <a href="#" target="_blank">conditions
+                      d'utilisation</a> <span aria-label="requis">*</span></label>
+                  <div id="terms_error" class="error-message" aria-live="polite"></div>
+                </div>
+
+                <div class="checkbox-item">
+                  <input type="checkbox" id="newsletter" name="newsletter" />
+                  <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="submit-btn">
+              <span>C'est parti</span>
+              <span class="loading" aria-hidden="true" style="display: none;">Inscription en cours...</span>
+            </button>
+          </form>
+        </div>
       </div>
     </main>
 
@@ -88,6 +193,7 @@
     <!-- JavaScript -->
     <script src="./assets/js/nav_dropdown.js"></script>
     <script src="./assets/js/currentYear.js"></script>
+    <script src="./assets/js/modal.js"></script>
   </body>
 
 </html>
