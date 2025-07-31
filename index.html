@@ -56,12 +56,11 @@
     <!-- Header -->
     <header>
       <nav class="header_nav">
-        <img src="./assets/favicons/favicon.svg" alt="GameOn logo" height="30" loading="lazy">
+        <img class="nav_logo" src="./assets/favicons/favicon.svg" alt="GameOn" loading="lazy">
         <div class="header_nav_links">
           <button id="btn_menu_toggle">
             <i class="fa-solid fa-bars"></i>
           </button>
-
           <!-- Mobile Menu -->
           <div class="mobile_menu_toggle" id="navDropdown">
             <ul class="mobile_toggle_list">
@@ -82,15 +81,19 @@
           <div class="container_content">
             <h1>Marathon national de jeux vidéos</h1>
             <p>Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</p>
-            <div class="main_container_button">
-              <button id="btn_signup">Je m'inscris</button>
-            </div>
           </div>
-          <picture>
-            <source srcset="./assets/img/webp/bg_img.webp" type="image/webp">
-            <source srcset="./assets/img/png/bg_img.jpg" type="image/jpeg">
-            <img src="./assets/img/png/bg_img.jpg" alt="img" loading="lazy">
-          </picture>
+
+          <div class="container_img">
+            <picture>
+              <source srcset="./assets/img/webp/bg_img.webp" type="image/webp">
+              <source srcset="./assets/img/png/bg_img.jpg" type="image/jpeg">
+              <img src="./assets/img/png/bg_img.jpg" alt="img" loading="lazy">
+            </picture>
+          </div>
+
+          <div class="container_button">
+            <button id="btn_signup">Je m'inscris</button>
+          </div>
         </div>
       </div>
 
