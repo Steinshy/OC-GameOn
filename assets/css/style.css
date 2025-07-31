@@ -188,47 +188,47 @@ header {
 .main_container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
   gap: var(--space-xl);
   min-height: 500px;
 }
 
-.container_content {
+.container_section {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
   justify-items: center;
   align-items: center;
+  padding: var(--space-sm);
 }
 
-.container_content h1 {
-  font-size: 3rem;
+.container_section h1 {
+  font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
-  margin: var(--space-md);
 }
 
-.container_content p {
+.container_section p {
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 300;
   text-align: center;
 }
 
 .container_img {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  width: 100%;
+  height: 100%;
+  margin-top: var(--space-xl);
 }
 
 .container_img img {
-  width: var(--size-full);
-  height: var(--size-full);
+  width: 100%;
+  height: 100%;
 }
 
 .container_button {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
   margin-top: var(--space-xl);
 }
 
@@ -255,8 +255,9 @@ footer {
 }
 
 footer p {
+  font-size: 1.2rem;
+  font-weight: 500;
   color: var(--color-primary);
-  font-weight: 600;
 }
 
 /* =========================
@@ -312,7 +313,6 @@ footer p {
     display: flex;
     flex-direction: row;
     gap: var(--space-lg);
-
     visibility: visible;
     pointer-events: auto;
   }
@@ -330,36 +330,41 @@ footer p {
     color: var(--color-white);
   }
 
-  .container_section img {
+  .container_img {
     position: absolute;
     top: 0;
-    left: var(--size-half);
-    width: var(--size-half);
-    height: var(--size-full);
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .container_img img {
     border-radius: 0 var(--space-md) var(--space-md) 0;
   }
 
-  .container_content h1,
-  .container_content p,
-  .container_button {
-    position: absolute;
+  .container_section {
+    justify-items: start;
+    align-items: start;
     padding: var(--space-2xl);
-    z-index: 1;
   }
 
-  .container_content h1 {
-    top: 0;
+  .container_section h1 {
     width: 60%;
     font-size: 4rem;
     font-weight: 600;
+    text-align: start;
+    z-index: 1;
   }
 
-  .container_content p {
-    top: 280px;
+  .container_section p {
     width: var(--size-half);
+    text-align: start;
+    z-index: 1;
   }
 
   .container_button {
-    bottom: 0;
+    margin-top: 0;
+    z-index: 1;
   }
 }
