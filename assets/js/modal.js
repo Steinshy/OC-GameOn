@@ -22,14 +22,12 @@ const modal = {
     this.element.style.display = "block";
     this.element.setAttribute("aria-hidden", "false");
     this.element.focus();
-    document.body.style.overflow = "hidden";
   },
 
   hide() {
     if (!this.element) return;
     this.element.style.display = "none";
     this.element.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
     this.signupBtn?.focus();
   },
 
