@@ -1,39 +1,46 @@
-const modal = {
-  signupBtn: document.getElementById("btn_signup"),
-  element: document.querySelector(".modal_container"),
-  closeBtn: document.querySelector(".close-btn"),
+// Modal logic refactored for clarity and robustness
+document.addEventListener("DOMContentLoaded", () => {
+  const signupBtn = document.getElementById("btn_signup");
+  const modal = document.querySelector(".modal_container");
+  const closeBtn = document.querySelector(".close-btn");
 
-  init() {
-    this.hide();
-    this.signupBtn?.addEventListener("click", () => this.show());
-    this.closeBtn?.addEventListener("click", () => this.hide());
+  function openModal() {
+    modal.classList.add("show");
+  }
 
-    this.element?.addEventListener("click", (e) => {
-      if (e.target === this.element) this.hide();
+  function closeModal() {
+    modal.classList.remove("show");
+  }
+
+  if (signupBtn) {
+    signupBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openModal();
     });
+  }
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && this.isOpen()) this.hide();
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeModal();
     });
-  },
+  }
 
-  show() {
-    if (!this.element) return;
-    this.element.style.display = "block";
-    this.element.setAttribute("aria-hidden", "false");
-    this.element.focus();
-  },
+  // Close modal when clicking outside modal content
+  document.addEventListener("click", (e) => {
+    if (
+      modal.classList.contains("show") &&
+      !modal.querySelector(".modal_content").contains(e.target) &&
+      e.target !== signupBtn
+    ) {
+      closeModal();
+    }
+  });
 
-  hide() {
-    if (!this.element) return;
-    this.element.style.display = "none";
-    this.element.setAttribute("aria-hidden", "true");
-    this.signupBtn?.focus();
-  },
-
-  isOpen() {
-    return this.element?.style.display === "block";
-  },
-};
-
-document.addEventListener("DOMContentLoaded", () => modal.init());
+  // Optional: Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+});

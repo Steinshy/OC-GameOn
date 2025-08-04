@@ -98,13 +98,16 @@
       <div class="modal_container" role="dialog" aria-modal="true" aria-labelledby="modal-title"
         aria-describedby="modal-description">
         <div class="modal_content">
-          <button type="button" class="close-btn" aria-label="Fermer la modal">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="modal_body">
-          <h2 id="modal-title">Inscription au tournoi GameOn</h2>
-          <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
+          <div class="modal_header">
+            <div class="modal_header_content">
+              <h2 id="modal-title">Inscription au tournoi GameOn</h2>
+              <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
+            </div>
+            <button class="close-btn" type="button" aria-label="Fermer la modal">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </div>
+
 
           <!-- Form -->
           <form name="register" method="get">
@@ -175,22 +178,19 @@
             <fieldset class="form_data">
               <legend>Conditions et notifications</legend>
               <div class="checkbox-group">
+                <input type="checkbox" id="terms_of_service" name="terms_of_service" required
+                  aria-describedby="terms_error" />
+                <label for="terms_of_service">J'ai lu et accepté les <a href="#" target="_blank">conditions
+                    d'utilisation</a> <span aria-label="requis">*</span></label>
+                <div id="terms_error" class="error-message" aria-live="polite"></div>
+              </div>
 
-                <div class="checkbox-item">
-                  <input type="checkbox" id="terms_of_service" name="terms_of_service" required
-                    aria-describedby="terms_error" />
-                  <label for="terms_of_service">J'ai lu et accepté les <a href="#" target="_blank">conditions
-                      d'utilisation</a> <span aria-label="requis">*</span></label>
-                  <div id="terms_error" class="error-message" aria-live="polite"></div>
-                </div>
-
-                <div class="checkbox-item">
-                  <input type="checkbox" id="newsletter" name="newsletter" />
-                  <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
-                </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter" />
+                <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
               </div>
             </fieldset>
-
+            
             <button type="submit" class="submit-btn">
               <span>C'est parti</span>
               <span class="loading" aria-hidden="true" style="display: none;">Inscription en cours...</span>
