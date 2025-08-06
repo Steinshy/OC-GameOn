@@ -64,7 +64,8 @@
           <!-- Mobile Menu -->
           <div class="mobile_menu_toggle" id="navDropdown">
             <ul class="mobile_toggle_list">
-              <li class="active"><a href="#">Détails de l'évènement</a></li>
+              <li class="active"><a href="#">Accueil</a></li>
+              <li><a href="#">Détails de l'évènement</a></li>
               <li><a href="#">À propos</a></li>
               <li><a href="#">Contact</a></li>
               <li><a href="#">Évènements passés</a></li>
@@ -80,17 +81,16 @@
         <div class="container_section">
           <h1>Marathon national de jeux vidéos</h1>
           <p>Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !</p>
-          <div class="container_img">
-            <picture>
-              <source srcset="./assets/img/webp/bg_img.webp" type="image/webp">
-              <source srcset="./assets/img/png/bg_img.jpg" type="image/jpeg">
-              <img src="./assets/img/png/bg_img.jpg" alt="img" loading="lazy">
-            </picture>
-          </div>
-
-          <div class="container_button">
-            <button id="btn_signup">Je m'inscris</button>
-          </div>
+        </div>
+        <div class="container_img">
+          <picture>
+            <source srcset="./assets/img/webp/bg_img.webp" type="image/webp">
+            <source srcset="./assets/img/png/bg_img.jpg" type="image/jpeg">
+            <img src="./assets/img/png/bg_img.jpg" alt="img" loading="lazy">
+          </picture>
+        </div>
+        <div class="container_button">
+          <button id="btn_signup">Je m'inscris</button>
         </div>
       </div>
 
@@ -108,39 +108,36 @@
             </button>
           </div>
 
-
           <!-- Form -->
-          <form name="register" method="get">
+          <form name="register" method="get" onsubmit="return validate();">
             <div class="form_data">
               <label for="first_name">Prénom <span aria-label="requis">*</span></label>
               <input id="first_name" type="text" name="first_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
-                placeholder="Entrez votre Prénom" aria-describedby="first_name_error" required />
+                placeholder="Entrez votre Prénom" aria-describedby="first_name_error" />
               <div id="first_name_error" class="error-message" aria-live="polite"></div>
             </div>
 
             <div class="form_data">
               <label for="last_name">Nom <span aria-label="requis">*</span></label>
               <input id="last_name" type="text" name="last_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
-                placeholder="Entrez votre Nom" aria-describedby="last_name_error" required />
+                placeholder="Entrez votre Nom" aria-describedby="last_name_error" />
               <div id="last_name_error" class="error-message" aria-live="polite"></div>
             </div>
 
             <div class="form_data">
               <label>E-mail <span aria-label="requis">*</span></label>
-              <input id="email" type="email" name="email" placeholder="Entrez votre adresse e-mail" required />
+              <input id="email" type="email" name="email" placeholder="Entrez votre adresse e-mail" />
             </div>
 
             <div class="form_data">
               <label for="birthdate">Date de naissance <span aria-label="requis">*</span></label>
-              <input id="birthdate" type="date" name="birthdate" aria-describedby="birthdate_help birthdate_error"
-                required />
+              <input id="birthdate" type="date" name="birthdate" aria-describedby="birthdate_help birthdate_error" />
               <div id="birthdate_error" class="error-message" aria-live="polite"></div>
             </div>
 
             <div class="form_data">
               <label>À combien de tournois GameOn avez-vous déjà participé ? <span aria-label="requis">*</span></label>
-              <input id="tournament_count" type="number" name="tournament_count" min="0" max="99" placeholder="0"
-                required />
+              <input id="tournament_count" type="number" name="tournament_count" min="0" max="99" placeholder="0" />
             </div>
 
             <!-- Tournoi -->
@@ -148,27 +145,27 @@
               <legend>À quel tournoi souhaitez-vous participer cette année ?</legend>
               <div class="radio-group">
                 <div class="radio-item">
-                  <input type="radio" id="NewYork" name="location" value="New York" required />
+                  <input type="radio" id="NewYork" name="location" value="New York" />
                   <label for="NewYork">New York</label>
                 </div>
                 <div class="radio-item">
-                  <input type="radio" id="SanFrancisco" name="location" value="San Francisco" required />
+                  <input type="radio" id="SanFrancisco" name="location" value="San Francisco" />
                   <label for="SanFrancisco">San Francisco</label>
                 </div>
                 <div class="radio-item">
-                  <input type="radio" id="Seattle" name="location" value="Seattle" required />
+                  <input type="radio" id="Seattle" name="location" value="Seattle" />
                   <label for="Seattle">Seattle</label>
                 </div>
                 <div class="radio-item">
-                  <input type="radio" id="Chicago" name="location" value="Chicago" required />
+                  <input type="radio" id="Chicago" name="location" value="Chicago" />
                   <label for="Chicago">Chicago</label>
                 </div>
                 <div class="radio-item">
-                  <input type="radio" id="Boston" name="location" value="Boston" required />
+                  <input type="radio" id="Boston" name="location" value="Boston" />
                   <label for="Boston">Boston</label>
                 </div>
                 <div class="radio-item">
-                  <input type="radio" id="Portland" name="location" value="Portland" required />
+                  <input type="radio" id="Portland" name="location" value="Portland" />
                   <label for="Portland">Portland</label>
                 </div>
               </div>
@@ -178,10 +175,9 @@
             <fieldset class="form_data">
               <legend>Conditions et notifications</legend>
               <div class="checkbox-group">
-                <input type="checkbox" id="terms_of_service" name="terms_of_service" required
-                  aria-describedby="terms_error" />
+                <input type="checkbox" id="terms_of_service" name="terms_of_service" aria-describedby="terms_error" />
                 <label for="terms_of_service">J'ai lu et accepté les <a href="#" target="_blank">conditions
-                    d'utilisation</a> <span aria-label="requis">*</span></label>
+                    d'utilisation</a></label>
                 <div id="terms_error" class="error-message" aria-live="polite"></div>
               </div>
 
@@ -190,7 +186,7 @@
                 <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
               </div>
             </fieldset>
-            
+
             <button type="submit" class="submit-btn">
               <span>C'est parti</span>
               <span class="loading" aria-hidden="true" style="display: none;">Inscription en cours...</span>
