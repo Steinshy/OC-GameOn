@@ -97,17 +97,16 @@ img {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-
-  max-width: var(--max-width);
-  margin: 0 auto;
   background-color: var(--color-white);
+  min-height: 100vh;
+  position: relative;
 }
 
 main {
   display: flex;
   flex-direction: column;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 /* =========================
@@ -115,6 +114,87 @@ main {
    ========================= */
 header {
   margin: var(--space-lg) 0;
+}
+
+/* =========================
+    Form Data
+   ========================= */
+.form_data {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-md);
+}
+
+.form_data label {
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-sm);
+  color: #fff;
+}
+
+.form_data input[type="text"],
+.form_data input[type="email"],
+.form_data input[type="date"],
+.form_data input[type="number"] {
+  padding: var(--space-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form_data input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form_data input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================
+    Radio and Checkbox Styling
+   ========================= */
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.radio-item input[type="radio"],
+.radio-item input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.radio-item label {
+  margin: 0;
+  cursor: pointer;
+}
+
+fieldset.form_data {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+fieldset.form_data legend {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-sm);
+  color: #fff;
+  gap: var(--space-sm);
 }
 
 .header_nav {
@@ -254,57 +334,67 @@ header {
 /* =========================
     Modal Container
    ========================= */
+.scroll_lock {
+  overflow: hidden;
+}
+
 .modal_container {
   display: none;
+  visibility: hidden;
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  left: 0;
+
   background-color: rgba(26, 39, 156, 0.4);
   pointer-events: none;
+  z-index: 9999;
 }
 
 .modal_container.show {
   display: block;
-  z-index: 9999;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .modal_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius-lg);
+  max-height: 80%;
+
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: var(--radius-sm);
   overflow: hidden;
   pointer-events: auto;
   background-color: #232323;
   color: #fff;
-  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
-  align-items: center;
   transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
 }
 
 .modal_header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
   padding: var(--space-md);
   padding-right: var(--space-2xl);
-}
-
-/* =========================
-    Modal Header Content
-   ========================= */
-.modal_header_content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+  background-color: #232323;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
   position: relative;
 }
 
-.close-btn {
+.modal_header button {
   position: absolute;
   right: var(--space-md);
   background: none;
@@ -315,17 +405,44 @@ header {
   justify-content: center;
 }
 
-.close-btn i {
+.modal_header button i {
   font-size: 1.8rem;
   color: #fff;
 }
 
+/* =========================
+    Modal Header Content
+   ========================= */
+.modal_header_content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  position: relative;
+}
+
+.modal_header_content h2 {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-sm) 0;
+  color: #fff;
+}
+
+.modal_header_content p {
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .modal_content form {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: column;
   padding: var(--space-md);
   gap: var(--space-md);
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
 }
 
 .submit-btn {
@@ -340,7 +457,21 @@ header {
   font-size: 1.5rem;
   font-weight: var(--font-weight-semibold);
   color: var(--color-white);
-  margin: 0 auto;
+  margin: var(--space-lg) auto 0 auto;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 1px 3px 15px 0 rgba(0, 0, 0, 0.6);
+}
+
+.modal_confirmation {
+  display: none;
+}
+
+.modal_confirmation.show {
+  display: block;
 }
 
 /* =========================
@@ -368,6 +499,17 @@ footer p {
     Mobile Styles (1024px and below)
    ========================= */
 @media (max-width: 1024px) {
+  .modal_content {
+    max-width: 100%;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    max-height: 91%;
+    transform: none;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
   .mobile_menu_toggle {
     position: absolute;
     opacity: 0;
@@ -399,7 +541,7 @@ footer p {
     Desktop Styles (1025px and above)
    ========================= */
 @media (min-width: 1025px) {
-  body {
+  main {
     max-width: var(--max-width-desktop);
   }
 
@@ -479,4 +621,33 @@ footer p {
     justify-content: end;
     margin-top: 0;
   }
+}
+
+/* =========================
+    Modal Error Form
+   ========================= */
+[aria-live="polite"] {
+  color: red;
+  font-size: 12px;
+  display: none;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:invalid + [aria-live="polite"] {
+  display: block;
+}
+
+input:valid {
+  border: 2px solid var(--color-success);
+}
+
+fieldset .error_form {
+  display: none;
+}
+
+fieldset:has(input:invalid) .error_form {
+  display: block;
 }

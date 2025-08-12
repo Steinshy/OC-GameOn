@@ -1,46 +1,87 @@
-// Modal logic refactored for clarity and robustness
 document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const mobileMenu = document.getElementById("mobile_menu");
+  const btnMobileMenu = document.getElementById("btn_mobile_menu");
+  const registerModal = document.getElementById("register_modal");
+  const registerModalClose = document.getElementById("register_modal_close");
   const signupBtn = document.getElementById("btn_signup");
-  const modal = document.querySelector(".modal_container");
-  const closeBtn = document.querySelector(".close-btn");
+  const submitBtn = document.getElementById("submit_btn");
+  const registerConfirmation = document.getElementById("register_confirmation");
+  const registerForm = document.getElementById("register_form");
+  const modalContainer = document.getElementById("modal_container");
 
+  // =========================
+  //    Functions
+  // =========================
   function openModal() {
-    modal.classList.add("show");
+    body.classList.add("scroll_lock");
+    registerModal.classList.add("show");
   }
 
   function closeModal() {
-    modal.classList.remove("show");
+    body.classList.remove("scroll_lock");
+    registerModal.classList.remove("show");
   }
 
-  if (signupBtn) {
-    signupBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      openModal();
-    });
+  function openMobileMenu() {
+    mobileMenu.classList.add("show");
   }
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      closeModal();
-    });
+  function closeMobileMenu() {
+    mobileMenu.classList.remove("show");
   }
 
-  // Close modal when clicking outside modal content
-  document.addEventListener("click", (e) => {
-    if (
-      modal.classList.contains("show") &&
-      !modal.querySelector(".modal_content").contains(e.target) &&
-      e.target !== signupBtn
-    ) {
-      closeModal();
-    }
+  function openConfirmation() {
+    registerConfirmation.classList.add("show");
+    registerForm.style.display = "none";
+  }
+
+  function closeConfirmation() {
+    registerModal.classList.remove("show");
+    // Empty the form && url params
+  }
+
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    openConfirmation();
   });
 
-  // Optional: Close modal on Escape key
+  signupBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openModal();
+  });
+
+  registerModalClose.addEventListener("click", (e) => {
+    e.stopPropagation();
+    closeModal();
+  });
+
+  btnMobileMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    (mobileMenu.classList.contains("show") ? closeMobileMenu : openMobileMenu)();
+  });
+
+  // Escape key to close Register Modal or Mobile Menu
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.classList.contains("show")) {
-      closeModal();
+    if (e.key === "Escape") {
+      if (registerModal.classList.contains("show")) closeModal();
+      if (mobileMenu.classList.contains("show")) closeMobileMenu();
     }
   });
 });
+
+// =========================
+//    Register Form
+// =========================
+// Get elements
+const firstName = document.getElementById("first_name");
+const lastName = document.getElementById("last_name");
+const email = document.getElementById("email");
+const birthdate = document.getElementById("birthdate");
+const tournamentCount = document.getElementById("tournament_count");
+
+const tournamentFieldset = document.getElementById("tournament_fieldset");
+const tournamentItems = tournamentFieldset.querySelectorAll(".radio-item");
+
+const termsCheckbox = document.getElementById("terms_checkbox");
+const newsletterCheckbox = document.getElementById("newsletter_checkbox");

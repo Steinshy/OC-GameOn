@@ -58,11 +58,11 @@
       <nav class="header_nav">
         <img class="header__logo" src="./assets/favicons/favicon.svg" alt="GameOn" loading="lazy">
         <div class="header_nav_links">
-          <button id="btn_menu_toggle">
+          <button id="btn_mobile_menu">
             <i class="fa-solid fa-bars"></i>
           </button>
           <!-- Mobile Menu -->
-          <div class="mobile_menu_toggle" id="navDropdown">
+          <div class="mobile_menu_toggle" id="mobile_menu">
             <ul class="mobile_toggle_list">
               <li class="active"><a href="#">Accueil</a></li>
               <li><a href="#">Détails de l'évènement</a></li>
@@ -93,112 +93,143 @@
           <button id="btn_signup">Je m'inscris</button>
         </div>
       </div>
-
-      <!-- Event Modal -->
-      <div class="modal_container" role="dialog" aria-modal="true" aria-labelledby="modal-title"
-        aria-describedby="modal-description">
-        <div class="modal_content">
-          <div class="modal_header">
-            <div class="modal_header_content">
-              <h2 id="modal-title">Inscription au tournoi GameOn</h2>
-              <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
-            </div>
-            <button class="close-btn" type="button" aria-label="Fermer la modal">
-              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-            </button>
-          </div>
-
-          <!-- Form -->
-          <form name="register" method="get" onsubmit="return validate();">
-            <div class="form_data">
-              <label for="first_name">Prénom <span aria-label="requis">*</span></label>
-              <input id="first_name" type="text" name="first_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
-                placeholder="Entrez votre Prénom" aria-describedby="first_name_error" />
-              <div id="first_name_error" class="error-message" aria-live="polite"></div>
-            </div>
-
-            <div class="form_data">
-              <label for="last_name">Nom <span aria-label="requis">*</span></label>
-              <input id="last_name" type="text" name="last_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
-                placeholder="Entrez votre Nom" aria-describedby="last_name_error" />
-              <div id="last_name_error" class="error-message" aria-live="polite"></div>
-            </div>
-
-            <div class="form_data">
-              <label>E-mail <span aria-label="requis">*</span></label>
-              <input id="email" type="email" name="email" placeholder="Entrez votre adresse e-mail" />
-            </div>
-
-            <div class="form_data">
-              <label for="birthdate">Date de naissance <span aria-label="requis">*</span></label>
-              <input id="birthdate" type="date" name="birthdate" aria-describedby="birthdate_help birthdate_error" />
-              <div id="birthdate_error" class="error-message" aria-live="polite"></div>
-            </div>
-
-            <div class="form_data">
-              <label>À combien de tournois GameOn avez-vous déjà participé ? <span aria-label="requis">*</span></label>
-              <input id="tournament_count" type="number" name="tournament_count" min="0" max="99" placeholder="0" />
-            </div>
-
-            <!-- Tournoi -->
-            <fieldset class="form_data">
-              <legend>À quel tournoi souhaitez-vous participer cette année ?</legend>
-              <div class="radio-group">
-                <div class="radio-item">
-                  <input type="radio" id="NewYork" name="location" value="New York" />
-                  <label for="NewYork">New York</label>
-                </div>
-                <div class="radio-item">
-                  <input type="radio" id="SanFrancisco" name="location" value="San Francisco" />
-                  <label for="SanFrancisco">San Francisco</label>
-                </div>
-                <div class="radio-item">
-                  <input type="radio" id="Seattle" name="location" value="Seattle" />
-                  <label for="Seattle">Seattle</label>
-                </div>
-                <div class="radio-item">
-                  <input type="radio" id="Chicago" name="location" value="Chicago" />
-                  <label for="Chicago">Chicago</label>
-                </div>
-                <div class="radio-item">
-                  <input type="radio" id="Boston" name="location" value="Boston" />
-                  <label for="Boston">Boston</label>
-                </div>
-                <div class="radio-item">
-                  <input type="radio" id="Portland" name="location" value="Portland" />
-                  <label for="Portland">Portland</label>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- Checkbox Terms of Service -->
-            <fieldset class="form_data">
-              <legend>Conditions et notifications</legend>
-              <div class="checkbox-group">
-                <input type="checkbox" id="terms_of_service" name="terms_of_service" aria-describedby="terms_error" />
-                <label for="terms_of_service">J'ai lu et accepté les <a href="#" target="_blank">conditions
-                    d'utilisation</a></label>
-                <div id="terms_error" class="error-message" aria-live="polite"></div>
-              </div>
-
-              <div class="checkbox-group">
-                <input type="checkbox" id="newsletter" name="newsletter" />
-                <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
-              </div>
-            </fieldset>
-
-            <button type="submit" class="submit-btn">
-              <span>C'est parti</span>
-              <span class="loading" aria-hidden="true" style="display: none;">Inscription en cours...</span>
-            </button>
-          </form>
-        </div>
-      </div>
     </main>
 
     <footer>
       <p>Copyright 2014 - <span id="currentYear"></span>, GameOn Inc.</p>
     </footer>
+
+    <!-- Event Modal -->
+    <div class="modal_container" id="register_modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+      aria-describedby="modal-description">
+      <div class="modal_content">
+        <div class="modal_header">
+          <div class="modal_header_content">
+            <h2 id="modal-title">Inscription au tournoi GameOn</h2>
+            <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
+          </div>
+          <button id="register_modal_close" type="button" aria-label="Fermer la modal">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Form -->
+        <form name="register" id="register_form" method="get" onsubmit="return validate();">
+          <div class="form_data">
+            <label for="first_name">Prénom <span aria-label="requis">*</span></label>
+            <input id="first_name" type="text" name="first_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
+              placeholder="Entrez votre Prénom" aria-describedby="first_name_help" />
+            <!-- Error Message -->
+            <span id="first_name_error" class="error_form" aria-live="polite">Veuillez entrer 2 caractères ou plus
+              pour le champ du Prénom.</span>
+          </div>
+
+          <div class="form_data">
+            <label for="last_name">Nom <span aria-label="requis">*</span></label>
+            <input id="last_name" type="text" name="last_name" minlength="2" pattern="[A-Za-zÀ-ÿ\s-]{2,}"
+              placeholder="Entrez votre Nom" aria-describedby="last_name_help" />
+            <!-- Error Message -->
+            <span id="last_name_error" class="error_form" aria-live="polite">
+              Veuillez entrer 2 caractères ou plus pour le champ du Nom
+            </span>
+          </div>
+
+          <div class="form_data">
+            <label>E-mail <span aria-label="requis">*</span></label>
+            <input id="email" type="email" name="email" placeholder="Entrez votre adresse e-mail"
+              aria-describedby="email_help" />
+            <!-- Error Message -->
+            <span id="email_error" class="error_form" aria-live="polite">
+              Vous devez entrer une adresse e-mail valide
+            </span>
+          </div>
+
+          <div class="form_data">
+            <label for="birthdate">Date de naissance <span aria-label="requis">*</span></label>
+            <input id="birthdate" type="date" name="birthdate" aria-describedby="birthdate_help" />
+            <!-- Error Message -->
+            <span id="birthdate_error" class="error_form" aria-live="polite">
+              Vous devez entrer une date de naissance valide
+            </span>
+          </div>
+
+          <div class="form_data">
+            <label>À combien de tournois GameOn avez-vous déjà participé ? <span aria-label="requis">*</span></label>
+            <input id="tournament_count" type="number" name="tournament_count" min="0" max="99" placeholder="0"
+              aria-describedby="tournament_count_help" />
+            <!-- Error Message -->
+            <span id="tournament_count_error" class="error_form" aria-live="polite">
+              Vous devez entrer un nombre entre 0 et 99
+            </span>
+          </div>
+
+          <!-- Tournoi -->
+          <fieldset class="form_data" id="tournament_fieldset">
+            <legend>À quel tournoi souhaitez-vous participer cette année ?</legend>
+            <div class="radio-group">
+              <div class="radio-item">
+                <input type="radio" id="NewYork" name="location" value="New York" aria-describedby="tournament_help" />
+                <label for="NewYork">New York</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="SanFrancisco" name="location" value="San Francisco"
+                  aria-describedby="tournament_help" />
+                <label for="SanFrancisco">San Francisco</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="Seattle" name="location" value="Seattle" aria-describedby="tournament_help" />
+                <label for="Seattle">Seattle</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="Chicago" name="location" value="Chicago" aria-describedby="tournament_help" />
+                <label for="Chicago">Chicago</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="Boston" name="location" value="Boston" aria-describedby="tournament_help" />
+                <label for="Boston">Boston</label>
+              </div>
+              <div class="radio-item">
+                <input type="radio" id="Portland" name="location" value="Portland" aria-describedby="tournament_help" />
+                <label for="Portland">Portland</label>
+              </div>
+            </div>
+            <!-- Error Message -->
+            <span id="tournament_error" class="error_form" aria-live="polite">
+              Vous devez choisir une option
+            </span>
+          </fieldset>
+
+          <!-- Checkbox Terms of Service -->
+          <fieldset class="form_data">
+            <legend>Conditions et notifications</legend>
+            <div class="checkbox-group" id="terms_checkbox">
+              <input type="checkbox" id="terms_of_service" name="terms_of_service" aria-describedby="terms_help" />
+              <label for="terms_of_service">J'ai lu et accepté les <a href="#">conditions d'utilisation</a></label>
+              <!-- Error Message -->
+              <span id="terms_error" class="error_form" aria-live="polite">
+                Vous devez vérifier que vous acceptez les termes et conditions.
+              </span>
+            </div>
+
+            <div class="checkbox-group" id="newsletter_checkbox">
+              <input type="checkbox" id="newsletter" name="newsletter" aria-describedby="newsletter_help" />
+              <label for="newsletter">Je souhaite être prévenu des prochains évènements (optionnel)</label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="submit-btn" id="submit_btn">C'est parti</button>
+          <!-- Loading -->
+          <span class="loading" aria-hidden="true" style="display: none;">Inscription en cours...</span>
+
+        </form>
+
+        <div class="modal_confirmation" id="register_confirmation" role="dialog" aria-modal="true">
+          <h1>Merci ! Votre réservation a été reçue.</h1>
+          <button class="confirmation_btn" type="button" aria-label="Fermer la confirmation">
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="./assets/js/nav_dropdown.js"></script>
