@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // =========================
   //    Variables
   // =========================
   const body = document.body;
+  const currentYear = new Date().getFullYear();
   const mobileMenu = document.getElementById("mobile_menu");
   const btnMobileMenu = document.getElementById("btn_mobile_menu");
   const registerModal = document.getElementById("register_modal");
@@ -14,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalContentForm = document.getElementById("modal_content_form");
   const modalHeader = document.getElementById("modal_header");
   const confirmationClose = document.getElementById("confirmation_close");
+  const footerYear = document.getElementById("footer_year");
+
+  const updateFooterYear = () => footerYear.textContent = currentYear;
+  updateFooterYear();
 
   const resetForm = () => {
     registerForm.reset();
@@ -180,8 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!fieldValid) isValid = false;
     });
 
-    // if (isValid) submitForm();
-    submitForm();
+    if (isValid) submitForm();
   };
 
   // =========================
