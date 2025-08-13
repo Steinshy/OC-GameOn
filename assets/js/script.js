@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (element.type === "checkbox" && element.id === "terms_of_service") fieldValid = validateCheckbox(element);
       if (element.type === "text" || element.type === "number" || element.type === "email") fieldValid = validateInput(element);
       if (element.type === "date") fieldValid = validateDate(element);
+
       if (!fieldValid) isValid = false;
     });
 
