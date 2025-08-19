@@ -1,61 +1,71 @@
 /* ===================================
-    GameOn - Main Stylesheet
+   GameOn - Main Stylesheet
    =================================== */
 
 /* =========================
-    Design System & CSS Custom Properties
+   DESIGN SYSTEM & CSS VARIABLES
    ========================= */
 :root {
-  /* ===== Color Palette ===== */
-  --color-primary: #e33f2c;
-  --color-secondary: #fe142f;
+  /* Colors - Brand */
+  --color-primary: #e33f2c; /* Main brand color */
+  --color-secondary: #fe142f; /* Secondary brand color */
 
-  /* ===== Neutral Colors ===== */
+  /* Colors - Neutral */
   --color-white: #ffffff;
-  --color-text: #000000;
+  --color-black: #000000;
+  --color-text: var(--color-black);
+  --color-dark-bg: #232323; /* Dark background for modals */
 
-  /* ===== Semantic Colors ===== */
-  --color-error: #e54858;
-  --color-success: #279e7a;
-  --color-warning: #f59e0b;
-  --color-info: #3b82f6;
+  /* Colors - Semantic */
+  --color-error: #e54858; /* Error states */
+  --color-success: #279e7a; /* Success states */
+  --color-warning: #f59e0b; /* Warning states */
+  --color-info: #3b82f6; /* Info states */
 
-  /* ===== Typography ===== */
+  /* Typography */
   --font-family-primary: "DM Sans", Arial, Helvetica, sans-serif;
   --font-family-secondary: "Roboto", Arial, Helvetica, sans-serif;
 
-  /* ===== Font Weights ===== */
+  /* Font Weights */
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
 
-  /* ===== Spacing System ===== */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 5rem;
+  /* Spacing Scale */
+  --space-xs: 0.5rem; /* 8px */
+  --space-sm: 0.75rem; /* 12px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+  --space-4xl: 5rem; /* 80px */
 
-  /* ===== Layout & Sizing ===== */
-  --max-width: 1024px;
+  /* Layout Dimensions */
+  --max-width-mobile: 1024px;
   --max-width-desktop: 1300px;
   --size-half: 50%;
   --size-full: 100%;
 
-  /* ===== Border Radius ===== */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-2xl: 1rem;
+  /* Border Radius */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+
+  /* Shadows */
+  --shadow-default: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+  --shadow-hover: 1px 3px 15px 0 rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
 }
 
 /* =========================
-    Modern CSS Reset
+    CSS RESET & BASE STYLES
    ========================= */
 *,
 *::before,
@@ -65,11 +75,13 @@
   padding: 0;
 }
 
+/* Remove default list styles */
 ul,
 ol {
   list-style: none;
 }
 
+/* Reset button styles */
 button {
   background: none;
   border: none;
@@ -78,17 +90,20 @@ button {
   color: inherit;
 }
 
+/* Reset link styles */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* Base HTML element */
 html {
   font-family: var(--font-family-primary);
   color: var(--color-text);
   background-color: var(--color-white);
 }
 
+/* Image defaults */
 img {
   display: block;
   max-width: 100%;
@@ -96,121 +111,42 @@ img {
   object-fit: cover;
 }
 
+/* =========================
+    LAYOUT & CONTAINERS
+   ========================= */
 body {
   background-color: var(--color-white);
   min-height: 100vh;
   position: relative;
-  max-width: var(--max-width);
+  max-width: var(--max-width-mobile);
   margin: 0 auto;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  max-width: var(--max-width);
+  max-width: var(--max-width-mobile);
   margin: 0 auto;
 }
 
-/* =========================
-    Layout Components
-   ========================= */
+/* Header */
 header {
   margin: var(--space-lg) 0;
-}
-
-/* =========================
-    Form Data
-   ========================= */
-.form_data {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--space-md);
-}
-
-.form_data label {
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--space-sm);
-  color: #fff;
-}
-
-.form_data input[type="text"],
-.form_data input[type="email"],
-.form_data input[type="date"],
-.form_data input[type="number"] {
-  padding: var(--space-sm);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-sm);
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.form_data input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.form_data input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* =========================
-    Radio and Checkbox Styling
-   ========================= */
-.radio-group {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: var(--space-sm);
-  margin-top: var(--space-sm);
-}
-
-.radio-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-}
-
-.radio-item input[type="radio"],
-.radio-item input[type="checkbox"] {
-  width: auto;
-  margin: 0;
-}
-
-.radio-item label {
-  margin: 0;
-  cursor: pointer;
-}
-
-fieldset.form_data {
-  border: none;
-  padding: 0;
-  margin: 0;
-}
-
-fieldset.form_data legend {
-  font-size: 1rem;
-  font-weight: var(--font-weight-medium);
-  margin-bottom: var(--space-sm);
-  color: #fff;
-  gap: var(--space-sm);
 }
 
 .header_nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-
-  height: 4rem;
+  align-items: stretch;
+  padding: var(--space-lg);
 }
 
 .header__logo {
   object-fit: contain;
   width: auto;
   height: 1.9rem;
+  transition: transform var(--transition-fast);
 }
 
 .header__logo:hover {
@@ -218,7 +154,7 @@ fieldset.form_data legend {
 }
 
 /* =========================
-    Navigation Links
+    NAVIGATION
    ========================= */
 .header_nav_links {
   position: relative;
@@ -229,7 +165,7 @@ fieldset.form_data legend {
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform var(--transition-fast);
 }
 
 .header_nav_links button i {
@@ -241,9 +177,7 @@ fieldset.form_data legend {
   transform: scale(1.1);
 }
 
-/* =========================
-    Mobile Navigation Menu
-   ========================= */
+/* Mobile Navigation Menu */
 .mobile_toggle_list {
   display: grid;
   gap: var(--space-sm);
@@ -271,7 +205,7 @@ fieldset.form_data legend {
 }
 
 /* =========================
-    Main Container
+    MAIN CONTENT AREA
    ========================= */
 .main_container {
   display: grid;
@@ -312,6 +246,9 @@ fieldset.form_data legend {
   height: 100%;
 }
 
+/* =========================
+    BUTTONS
+   ========================= */
 .container_button {
   display: flex;
   flex-direction: column;
@@ -327,18 +264,232 @@ fieldset.form_data legend {
   cursor: pointer;
   background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-primary) 100%);
   border-radius: var(--radius-lg);
-  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-default);
   border: none;
   font-size: 1.5rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.container_button button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* =========================
-    Modal Container
+    FORMS
    ========================= */
-.scroll_lock {
-  overflow: hidden;
+.form_data {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-md);
 }
 
+.form_data label {
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-sm);
+  color: var(--color-white);
+}
+
+.form_data input[type="text"],
+.form_data input[type="email"],
+.form_data input[type="date"],
+.form_data input[type="number"] {
+  padding: var(--space-sm);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  font-size: 1rem;
+  transition: border-color var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+.form_data input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.form_data input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Form Validation States */
+.form_data .error_form {
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-light);
+  display: none;
+  margin-top: var(--space-sm);
+  color: var(--color-error);
+}
+
+.form_data[data-error-visible="true"] .error_form {
+  display: block;
+}
+
+.form_data[data-error-visible="true"] input {
+  border: 2px solid var(--color-error);
+}
+
+.form_data[data-success-visible="true"] input {
+  border: 2px solid var(--color-success);
+}
+
+/* =========================
+    FORM CONTROLS
+   ========================= */
+/* Radio Button Groups */
+.radio-group {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.radio-item input[type="radio"],
+.radio-item input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+.radio-item label {
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Fieldset Styling */
+fieldset.form_data {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+fieldset.form_data legend {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-sm);
+  color: var(--color-white);
+}
+
+/* =========================
+    CUSTOM FORM CONTROLS
+   ========================= */
+.checkbox-container {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  align-items: center;
+  height: 25px;
+}
+
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-container .checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-white);
+  transition: all var(--transition-fast);
+}
+
+.checkbox-container .checkmark i {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.checkbox-container:hover input ~ .checkmark {
+  border-color: var(--color-success);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+}
+
+.checkbox-container input:checked ~ .checkmark i {
+  opacity: 1;
+}
+
+.radio-container {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+  align-items: center;
+  height: 25px;
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white);
+  transition: all var(--transition-fast);
+}
+
+.radio-container:hover input ~ .checkmark {
+  border-color: var(--color-success);
+}
+
+.radio-container input:checked ~ .checkmark {
+  border-color: var(--color-success);
+}
+
+.radio-container .checkmark:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  height: 70%;
+  width: 70%;
+  background-color: var(--color-success);
+  transform: scale(0);
+  transition: transform var(--transition-fast);
+}
+
+.radio-container input:checked ~ .checkmark:after {
+  transform: scale(1);
+}
+
+/* =========================
+    MODAL SYSTEM
+   ========================= */
 .modal_container {
   display: none;
   visibility: hidden;
@@ -347,7 +498,6 @@ fieldset.form_data legend {
   left: 0;
   width: 100%;
   height: 100%;
-
   background-color: rgba(26, 39, 156, 0.4);
   pointer-events: none;
   z-index: 9999;
@@ -366,10 +516,9 @@ fieldset.form_data legend {
   transform: translate(-50%, -50%);
   max-width: 600px;
   margin: 0 auto;
-  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-default);
   border-radius: var(--radius-lg);
   max-height: 90%;
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -377,9 +526,9 @@ fieldset.form_data legend {
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow: hidden;
   pointer-events: auto;
-  background-color: #232323;
-  color: #fff;
-  transition: all 0.3s ease;
+  background-color: var(--color-dark-bg);
+  color: var(--color-white);
+  transition: all var(--transition-normal);
 }
 
 .modal_header {
@@ -389,7 +538,7 @@ fieldset.form_data legend {
   justify-content: space-between;
   padding: var(--space-md);
   padding-right: var(--space-2xl);
-  background-color: #232323;
+  background-color: var(--color-dark-bg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
   position: relative;
@@ -398,27 +547,28 @@ fieldset.form_data legend {
 .modal_close {
   position: absolute;
   right: var(--space-md);
-  background: none;
   top: var(--space-md);
+  background: none;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.modal_close:hover {
+  transform: scale(1.1);
 }
 
 .modal_close i {
   font-size: 1.8rem;
-  color: #fff;
+  color: var(--color-white);
 }
 
-/* =========================
-    Modal Header Content
-   ========================= */
 .modal_header_content {
   display: flex;
   flex-direction: column;
-
   align-items: center;
   flex: 1;
   position: relative;
@@ -428,7 +578,7 @@ fieldset.form_data legend {
   font-size: 1.5rem;
   font-weight: var(--font-weight-semibold);
   margin: 0 0 var(--space-sm) 0;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .modal_header_content p {
@@ -449,10 +599,9 @@ fieldset.form_data legend {
 .modal_content form {
   display: flex;
   flex-direction: column;
-  padding: var(--space-md);
+  padding: 2rem;
   gap: var(--space-md);
   flex: 1;
-  padding: 2rem;
 }
 
 .modal_footer {
@@ -470,17 +619,17 @@ fieldset.form_data legend {
   cursor: pointer;
   background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-primary) 100%);
   border-radius: var(--radius-lg);
-  box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-default);
   border: none;
   font-size: 1.5rem;
   font-weight: var(--font-weight-semibold);
   color: var(--color-white);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.submit-btn:hover {
+.modal_footer button:hover {
   transform: translateY(-2px);
-  box-shadow: 1px 3px 15px 0 rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-hover);
 }
 
 .modal_confirmation {
@@ -497,14 +646,14 @@ fieldset.form_data legend {
   font-size: 2rem;
   font-weight: var(--font-weight-semibold);
   margin: 0 0 var(--space-md) 0;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .modal_confirmation h2 {
   font-size: 1.25rem;
   font-weight: var(--font-weight-semibold);
   margin: 0 0 var(--space-sm) 0;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .modal_confirmation p {
@@ -514,28 +663,15 @@ fieldset.form_data legend {
   color: rgba(255, 255, 255, 0.8);
 }
 
-.container_button button {
-  margin-top: var(--space-2xl);
-}
-
-.show {
-  display: flex;
-}
-
-.hide {
-  display: none;
-}
-
 /* =========================
-    Footer
+    FOOTER
    ========================= */
 footer {
-  display: flex;
-  flex-direction: row;
+  display: grid;
   justify-content: center;
   align-items: center;
-  padding: var(--space-lg);
-  margin: var(--space-lg) auto;
+  padding: var(--space-xl);
+  margin-top: var(--space-xl);
 }
 
 footer p {
@@ -545,11 +681,9 @@ footer p {
 }
 
 /* =========================
-    Media Queries
+    RESPONSIVE DESIGN
    ========================= */
-/* =========================
-    Mobile Styles (1024px and below)
-   ========================= */
+/* Mobile Styles (1024px and below) */
 @media (max-width: 1024px) {
   .modal_content {
     top: 100px;
@@ -571,16 +705,14 @@ footer p {
     min-height: 12.5rem;
     margin-top: var(--space-sm);
     border-radius: var(--radius-lg);
-    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-default);
     background-color: var(--color-white);
     transform: translateY(-10px);
     pointer-events: none;
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast),
+      transform var(--transition-fast);
   }
 
-  /* =========================
-    Show mobile menu when active
-   ========================= */
   .mobile_menu_toggle.show {
     opacity: 1;
     visibility: visible;
@@ -593,25 +725,19 @@ footer p {
   }
 }
 
-/* =========================
-    Desktop Styles (1025px and above)
-   ========================= */
+/* Desktop Styles (1025px and above) */
 @media (min-width: 1025px) {
   body,
   main {
     max-width: var(--max-width-desktop);
   }
 
-  /* =========================
-    Hide mobile menu button on desktop
-   ========================= */
+  /* Hide mobile menu button on desktop */
   .header_nav_links button {
     display: none;
   }
 
-  /* =========================
-    Desktop Navigation
-   ========================= */
+  /* Desktop Navigation */
   .mobile_menu_toggle {
     transition: none;
     transform: none;
@@ -626,19 +752,20 @@ footer p {
     pointer-events: auto;
   }
 
-  /* =========================
-    Main Container Background
-   ========================= */
+  /* Main Container Layout */
   .main_container {
     position: relative;
     height: 41.25rem;
-    background-color: #232323;
+    background-color: var(--color-dark-bg);
     border-radius: var(--radius-lg);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-default);
   }
 
   .container_section {
     position: relative;
+    align-items: start;
+    justify-items: start;
+    color: var(--color-white);
   }
 
   .container_img {
@@ -677,6 +804,18 @@ footer p {
     align-items: start;
     justify-content: end;
     margin-top: 0;
+  }
+
+  .scroll_lock {
+    overflow: hidden;
+  }
+
+  .show {
+    display: flex;
+  }
+
+  .hide {
+    display: none;
   }
 }
 

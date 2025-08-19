@@ -1,43 +1,85 @@
 {
-  "name": "GameOn",
+  "name": "GameOn - Marathon national de jeux vidéos",
   "short_name": "GameOn",
   "description": "Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !",
+
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#ffffff",
+
+  "theme_color": "#e33f2c",
   "background_color": "#ffffff",
-  "categories": ["games", "sports", "events"],
+
+  "categories": ["games", "sports", "events", "entertainment"],
   "lang": "fr",
+
   "icons": [
     {
       "src": "/assets/favicons/favicon-96x96.png",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/assets/favicons/web-app-manifest-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/assets/favicons/web-app-manifest-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/assets/favicons/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/assets/favicons/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ],
-  "screenshots": [],
+
+  "screenshots": [
+    {
+      "src": "/assets/img/png/bg_img.jpg",
+      "sizes": "1024x768",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Page d'accueil GameOn"
+    }
+  ],
+
   "prefer_related_applications": false,
-  "related_applications": []
+  "related_applications": [],
+
+  "shortcuts": [
+    {
+      "name": "S'inscrire",
+      "short_name": "Inscription",
+      "description": "S'inscrire au marathon de jeux vidéos",
+      "url": "/#inscription",
+      "icons": [
+        {
+          "src": "/assets/favicons/favicon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }
