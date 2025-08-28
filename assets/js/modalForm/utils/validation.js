@@ -35,6 +35,55 @@ const getFormElements = () => {
 };
 
 // =========================
+// Pattern Definitions
+// =========================
+const fieldPatterns = {
+  name: /^[A-Za-zÀ-ÿ\s-]{2,}$/,
+  email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+  birthdate: /^\d{4}-\d{2}-\d{2}$/,
+  tournament_count: /^\d+$/,
+};
+
+// =========================
+// Field Validation Rules
+// =========================
+const validateName = (value) => {
+  const pattern = fieldPatterns.name;
+  return value.length >= 2 && pattern.test(value);
+};
+
+const fieldValidators = {
+  first_name: validateName,
+  last_name: validateName,
+
+  email: (value) => {
+    const pattern = fieldPatterns.email;
+    return pattern.test(value);
+  },
+
+  birthdate: (value) => {
+    const pattern = fieldPatterns.birthdate;
+    if (!pattern.test(value)) return false;
+
+    const today = new Date();
+    const selectedDate = new Date(value);
+    const minDate = new Date(
+      today.getFullYear() - 100,
+      today.getMonth(),
+      today.getDate()
+    );
+
+    return selectedDate <= today && selectedDate >= minDate;
+  },
+
+  tournament_count: (value) => {
+    const pattern = fieldPatterns.tournament_count;
+    const numValue = parseInt(value, 10);
+    return pattern.test(value) && numValue >= 0 && numValue <= 99;
+  },
+};
+
+// =========================
 // Validation Rules
 // =========================
 const validationRules = {
@@ -78,9 +127,9 @@ const validationRules = {
     return isChecked;
   },
 
-  text: (element) => {
+  validateInput: (element) => {
     const value = element.value.trim();
-    const pattern = element.dataset.pattern;
+    const validator = fieldValidators[element.id];
 
     // Find the closest form_data container
     const container = element.closest(".form_data");
@@ -91,73 +140,14 @@ const validationRules = {
       return false;
     }
 
-    if (pattern && !new RegExp(pattern).test(value)) {
-      setFormFieldState(target, true, false);
-      return false;
+    // Use specific validator if available
+    if (validator) {
+      const isValid = validator(value);
+      setFormFieldState(target, !isValid, isValid);
+      return isValid;
     }
 
-    setFormFieldState(target, false, true);
-    return true;
-  },
-
-  number: (element) => {
-    const value = element.value.trim();
-
-    // Find the closest form_data container
-    const container = element.closest(".form_data");
-    const target = container || element;
-
-    if (!value) {
-      setFormFieldState(target, true, false);
-      return false;
-    }
-
-    setFormFieldState(target, false, true);
-    return true;
-  },
-
-  email: (element) => {
-    const value = element.value.trim();
-
-    // Find the closest form_data container
-    const container = element.closest(".form_data");
-    const target = container || element;
-
-    if (!value) {
-      setFormFieldState(target, true, false);
-      return false;
-    }
-
-    // Basic email validation
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(value)) {
-      setFormFieldState(target, true, false);
-      return false;
-    }
-
-    setFormFieldState(target, false, true);
-    return true;
-  },
-
-  date: (element) => {
-    const value = element.value.trim();
-    const today = new Date();
-    const selectedDate = new Date(value);
-    const minDate = new Date(
-      today.getFullYear() - 100,
-      today.getMonth(),
-      today.getDate()
-    );
-
-    // Find the closest form_data container
-    const container = element.closest(".form_data");
-    const target = container || element;
-
-    if (!value || selectedDate > today || selectedDate < minDate) {
-      setFormFieldState(target, true, false);
-      return false;
-    }
-
+    // Fallback: field is valid if it has a value
     setFormFieldState(target, false, true);
     return true;
   },
@@ -179,24 +169,14 @@ const validateField = (element) => {
         : true;
 
     case "text":
-      return validationRules.text(element);
-
     case "number":
-      return validationRules.number(element);
-
     case "email":
-      return validationRules.email(element);
-
     case "date":
-      return validationRules.date(element);
+      return validationRules.validateInput(element);
 
     default:
       return true;
   }
-};
-
-const handleRealTimeValidation = (e) => {
-  validateField(e.target);
 };
 
 const validateAllFields = () => {
@@ -233,28 +213,13 @@ const clearFormFieldState = (element) => {
 };
 
 // =========================
-// Export Functions
+// Window Exports
 // =========================
-// Make functions available globally for use by other modules
-if (typeof window !== "undefined") {
-  window.GameOnValidation = {
-    // Core validation functions
-    validateField,
-    validateAllFields,
-    handleRealTimeValidation,
-    setFormFieldState,
-    clearFormFieldState,
-    getRequiredFormFields,
-    getRequiredRadioGroups,
-    validationRules,
-    getFormElements,
-  };
-
-  window.validateField = validateField;
-  window.validateAllFields = validateAllFields;
-  window.handleRealTimeValidation = handleRealTimeValidation;
-  window.setFormFieldState = setFormFieldState;
-  window.clearFormFieldState = clearFormFieldState;
-  window.getRequiredFormFields = getRequiredFormFields;
-  window.getRequiredRadioGroups = getRequiredRadioGroups;
-}
+window.validateField = validateField;
+window.validateAllFields = validateAllFields;
+window.setFormFieldState = setFormFieldState;
+window.clearFormFieldState = clearFormFieldState;
+window.getRequiredFormFields = getRequiredFormFields;
+window.fieldValidators = fieldValidators;
+window.fieldPatterns = fieldPatterns;
+window.validateName = validateName;

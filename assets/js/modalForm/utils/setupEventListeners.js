@@ -2,11 +2,6 @@
 // Event Listeners Setup
 // =========================
 const setupEventListeners = () => {
-  const mobileMenuElements = window.mobileMenuElements;
-  const registerModalElements = window.registerModalElements;
-  const registerConfirmationElements = window.registerConfirmationElements;
-  const buttonElements = window.buttonElements;
-
   const createEventHandler = (handler) => (e) => {
     e.stopPropagation();
     handler(e);
@@ -15,15 +10,17 @@ const setupEventListeners = () => {
   const eventHandlers = {
     escape: (e) => {
       if (e.key === "Escape") {
-        if (registerModalElements.registerModal.classList.contains("show"))
+        if (window.modalRefs?.modal?.classList.contains("show")) {
           window.closeModal();
-        if (mobileMenuElements.mobileMenu.classList.contains("show"))
+        }
+        if (window.mobileMenuRefs?.menu?.classList.contains("show")) {
           window.closeMobileMenu();
+        }
       }
     },
 
     mobileMenu: createEventHandler(() => window.toggleMobileMenu()),
-    signup: createEventHandler(() => window.openModal()),
+    register: createEventHandler(() => window.openModal()),
     confirmationClose: createEventHandler(() => window.closeModal()),
     modalClose: createEventHandler(() => window.closeModal()),
   };
@@ -32,35 +29,35 @@ const setupEventListeners = () => {
   document.addEventListener("keydown", eventHandlers.escape);
 
   // Mobile menu
-  if (mobileMenuElements.btnMobileMenu) {
-    mobileMenuElements.btnMobileMenu.addEventListener(
+  if (window.mobileMenuRefs?.toggleButton) {
+    window.mobileMenuRefs.toggleButton.addEventListener(
       "click",
       eventHandlers.mobileMenu
     );
   }
 
   // Modal actions
-  if (buttonElements.signupBtn) {
-    buttonElements.signupBtn.addEventListener("click", eventHandlers.signup);
+  if (window.buttonRefs?.signup) {
+    window.buttonRefs.signup.addEventListener("click", eventHandlers.register);
   }
 
-  if (registerConfirmationElements.confirmationClose) {
-    registerConfirmationElements.confirmationClose.addEventListener(
+  if (window.confirmationRefs?.closeButton) {
+    window.confirmationRefs.closeButton.addEventListener(
       "click",
       eventHandlers.confirmationClose
     );
   }
 
-  if (registerModalElements.registerModalClose) {
-    registerModalElements.registerModalClose.addEventListener(
+  if (window.modalRefs?.closeButton) {
+    window.modalRefs.closeButton.addEventListener(
       "click",
       eventHandlers.modalClose
     );
   }
 
   // Form submission
-  if (buttonElements.submitBtn) {
-    buttonElements.submitBtn.addEventListener(
+  if (window.buttonRefs?.submit) {
+    window.buttonRefs.submit.addEventListener(
       "click",
       window.handleFormSubmission
     );

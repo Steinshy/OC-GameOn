@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // =========================
-  // Core Application Initialization
-  // =========================
-  const init = () => {
-    const footerYear = document.getElementById("footer_year");
-    footerYear.textContent = new Date().getFullYear();
-    window.setupEventListeners();
-  };
-
-  // =========================
-  // Form Submission
-  // =========================
   const submitForm = () => {
     window.showConfirmation();
   };
@@ -24,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   window.handleFormSubmission = handleFormSubmission;
-
-  init();
+  window.setupEventListeners();
+  const footerYear = document.getElementById("footer_year");
+  footerYear.textContent = new Date().getFullYear();
 });

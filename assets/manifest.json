@@ -3,10 +3,10 @@
   "short_name": "GameOn",
   "description": "Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !",
 
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "orientation": "any",
 
   "theme_color": "#e33f2c",
   "background_color": "#ffffff",
@@ -65,11 +65,25 @@
       "name": "S'inscrire",
       "short_name": "Inscription",
       "description": "S'inscrire au marathon de jeux vidéos",
-      "url": "/#inscription",
+      "url": "/?action=inscription",
       "icons": [
         {
           "src": "/assets/favicons/favicon-96x96.png",
-          "sizes": "96x96"
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Accueil",
+      "short_name": "Home",
+      "description": "Retour à l'accueil GameOn",
+      "url": "/?action=home",
+      "icons": [
+        {
+          "src": "/assets/favicons/favicon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     }
@@ -81,5 +95,9 @@
 
   "launch_handler": {
     "client_mode": "navigate-existing"
-  }
+  },
+
+  "navigation_scope": "/",
+  "handle_links": "preferred",
+  "protocol_handlers": []
 }
