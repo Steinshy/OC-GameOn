@@ -2,6 +2,9 @@
 <html lang="fr">
 
   <head>
+
+    <!-- Sortir les params dans le fichier config.js -->
+
     <!-- =========================
       Meta Tags & Document Information
     ========================= -->
@@ -139,12 +142,12 @@
     <div class="modal_container" id="register_modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
       aria-describedby="modal-description">
 
-      <div class="modal_content">
+      <div class="modal_content" id="modal_content">
         <!-- Modal Header -->
         <div class="modal_header" id="modal_header">
           <div class="modal_header_content">
-            <h2 id="modal-title">Inscription au tournoi GameOn</h2>
-            <p id="modal-description">Remplissez le formulaire pour vous inscrire</p>
+            <h3>Inscription au tournoi GameOn</h3>
+            <p>Remplissez le formulaire pour vous inscrire</p>
           </div>
         </div>
 
@@ -159,7 +162,7 @@
           <form name="register" id="register_form" method="get" novalidate>
 
             <!-- First Name Field -->
-            <div class="form_data" data-error-visible="false">
+            <div class="form_data" id="first_name_field" data-error-visible="false">
               <label for="first_name">Prénom <span aria-label="requis" class="required">*</span></label>
               <input id="first_name" type="text" name="first_name" data-pattern="[A-Za-zÀ-ÿ\s-]{2,}"
                 placeholder="Entrez votre Prénom" aria-describedby="first_name_error" required />
@@ -169,7 +172,7 @@
             </div>
 
             <!-- Last Name Field -->
-            <div class="form_data" data-error-visible="false">
+            <div class="form_data" id="last_name_field" data-error-visible="false">
               <label for="last_name">Nom <span aria-label="requis" class="required">*</span></label>
               <input id="last_name" type="text" name="last_name" data-pattern="[A-Za-zÀ-ÿ\s-]{2,}"
                 placeholder="Entrez votre Nom" aria-describedby="last_name_error" required />
@@ -179,7 +182,7 @@
             </div>
 
             <!-- Email Field -->
-            <div class="form_data" data-error-visible="false">
+            <div class="form_data" id="email_field" data-error-visible="false">
               <label for="email">E-mail <span aria-label="requis" class="required">*</span></label>
               <input id="email" type="email" name="email" data-pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                 placeholder="Entrez votre adresse e-mail" aria-describedby="email_error" required />
@@ -189,7 +192,7 @@
             </div>
 
             <!-- Birth Date Field -->
-            <div class="form_data" data-error-visible="false">
+            <div class="form_data" id="birthdate_field" data-error-visible="false">
               <label for="birthdate">Date de naissance <span aria-label="requis" class="required">*</span></label>
               <input id="birthdate" type="date" name="birthdate" data-pattern="\d{4}-\d{2}-\d{2}"
                 aria-describedby="birthdate_error" required />
@@ -199,7 +202,7 @@
             </div>
 
             <!-- Tournament Count Field -->
-            <div class="form_data" data-error-visible="false">
+            <div class="form_data" id="tournament_count_field" data-error-visible="false">
               <label for="tournament_count">À combien de tournois GameOn avez-vous déjà participé ? <span
                   aria-label="requis" class="required">*</span></label>
               <input id="tournament_count" type="number" name="tournament_count" data-pattern="\d{1,}" min="0" max="99"
@@ -269,7 +272,7 @@
             </fieldset>
 
             <!-- Terms of Service Agreement -->
-            <fieldset class="form_data" data-error-visible="false">
+            <fieldset class="form_data" id="terms_fieldset" data-error-visible="false">
               <legend>Conditions et notifications</legend>
               <label for="terms_of_service" class="checkbox-container" id="terms_checkbox">
                 J'ai lu et accepté les conditions d'utilisation<span aria-label="requis" class="required">*</span>
@@ -287,7 +290,7 @@
             </fieldset>
 
             <!-- Newsletter Subscription (Optional) -->
-            <fieldset class="form_data optional">
+            <fieldset class="form_data optional" id="newsletter_fieldset">
               <label for="newsletter" class="checkbox-container" id="newsletter_checkbox">
                 Je souhaite être prévenu des prochains évènements <span class="optional-text">(optionnel)</span>
                 <input type="checkbox" id="newsletter" name="newsletter" />
@@ -309,12 +312,12 @@
         ========================= -->
         <div class="modal_confirmation" id="register_confirmation" role="dialog" aria-modal="true"
           aria-labelledby="confirmation-title" aria-describedby="confirmation-description">
-          <h1 id="confirmation-title">Merci !</h1>
-          <h2 id="confirmation-subtitle">Votre réservation a été reçue.</h2>
+          <h2 id="confirmation-title">Merci !</h2>
+          <h3 id="confirmation-subtitle">Votre réservation a été reçue.</h3>
           <p id="confirmation-description">Vous recevrez un e-mail de confirmation dans quelques instants.</p>
 
           <!-- Close Confirmation Button -->
-          <div class="container_button">
+          <div class="container_button modal_button">
             <button type="button" id="confirmation_close" aria-label="Fermer la confirmation">
               Fermer
             </button>

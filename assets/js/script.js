@@ -6,43 +6,46 @@ document.addEventListener("DOMContentLoaded", () => {
     // Core elements
     body: document.body,
     footerYear: document.getElementById("footer_year"),
+  };
 
-    // Mobile menu
+  const mobileMenuElements = {
     mobileMenu: document.getElementById("mobile_menu"),
     btnMobileMenu: document.getElementById("btn_mobile_menu"),
+  };
 
-    // Registration modal
+  const registerModalElements = {
     registerModal: document.getElementById("register_modal"),
+    modalHeader: document.getElementById("modal_header"),
     registerModalClose: document.getElementById("register_modal_close"),
+  };
+
+  const registerFormElements = {
+    modalContent: document.getElementById("modal_content"),
+    modalContentForm: document.getElementById("modal_content_form"),
+    registerForm: document.getElementById("register_form"),
+    firstNameField: document.getElementById("first_name_field"),
+    lastNameField: document.getElementById("last_name_field"),
+    emailField: document.getElementById("email_field"),
+    birthdateField: document.getElementById("birthdate_field"),
+    tournamentCountField: document.getElementById("tournament_count_field"),
+    tournamentFieldset: document.getElementById("tournament_fieldset"),
+    newsletterFieldset: document.getElementById("newsletter_fieldset"),
+    termsFieldset: document.getElementById("terms_fieldset"),
+  };
+
+  const registerConfirmationElements = {
     registerConfirmation: document.getElementById("register_confirmation"),
     confirmationClose: document.getElementById("confirmation_close"),
+  };
 
-    // Form elements
-    registerForm: document.getElementById("register_form"),
-    modalContentForm: document.getElementById("modal_content_form"),
-    modalHeader: document.getElementById("modal_header"),
-    submitBtn: document.getElementById("submit_btn"),
-
-    // Buttons
+  const buttonElements = {
     signupBtn: document.getElementById("btn_signup"),
-
-    // Data
-    currentYear: new Date().getFullYear()
+    submitBtn: document.getElementById("submit_btn"),
   };
 
-  // =========================
-  // App Initialization
-  // =========================
   const init = () => {
-    initializeApp();
+    elements.footerYear.textContent = new Date().getFullYear();
     setupEventListeners();
-  };
-
-  // =========================
-  // Initialization
-  // =========================
-  const initializeApp = () => {
-    elements.footerYear.textContent = elements.currentYear;
   };
 
   // =========================
@@ -55,8 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const clearFormFieldState = (element) => {
     setFormFieldState(element, false, false);
-
-    // Reset radio buttons and checkboxes
     if (element.type === "radio" || element.type === "checkbox") {
       element.checked = false;
     }
@@ -66,48 +67,96 @@ document.addEventListener("DOMContentLoaded", () => {
     return document.querySelectorAll(".form_data:not(.optional) input");
   };
 
+  const getRequiredRadioGroups = () => {
+    const radioButtons = document.querySelectorAll(
+      ".form_data:not(.optional) input[type='radio']"
+    );
+    const groups = new Set();
+    radioButtons.forEach((radio) => {
+      if (radio.name) groups.add(radio.name);
+    });
+    return Array.from(groups).map((groupName) =>
+      document.querySelector(`input[name="${groupName}"]`)
+    );
+  };
+
   // =========================
   // Modal Management
   // =========================
   const resetForm = () => {
-    elements.registerForm.reset();
+    registerFormElements.registerForm.reset();
 
-    // Clear all form field states
-    document.querySelectorAll(".form_data").forEach(clearFormFieldState);
+    const formFields = [
+      registerFormElements.firstNameField,
+      registerFormElements.lastNameField,
+      registerFormElements.emailField,
+      registerFormElements.birthdateField,
+      registerFormElements.tournamentCountField,
+      registerFormElements.tournamentFieldset,
+      registerFormElements.newsletterFieldset,
+    ];
 
-    // Show form, hide confirmation
-    elements.registerConfirmation.classList.remove("show");
-    elements.modalContentForm.classList.remove("hide");
+    formFields.forEach((field) => {
+      if (field) {
+        clearFormFieldState(field);
+      }
+    });
+
+    const allInputs =
+      registerFormElements.registerForm.querySelectorAll("input");
+    allInputs.forEach((input) => {
+      if (input.type === "radio" || input.type === "checkbox") {
+        clearFormFieldState(input);
+      }
+    });
+
+    registerConfirmationElements.registerConfirmation.classList.remove("show");
+    registerFormElements.modalContentForm.classList.add("show");
+    registerModalElements.modalHeader.classList.add("show");
   };
 
   const openModal = () => {
     resetForm();
 
-    // Lock body scroll and show modal
     elements.body.classList.add("scroll_lock");
-    elements.modalContentForm.scrollTop = 0;
-    elements.registerModal.classList.add("show");
+    registerModalElements.registerModal.classList.add("show");
+    registerModalElements.modalHeader.classList.add("show");
+    registerFormElements.modalContentForm.classList.add("show");
 
-    // Set up real-time validation for all form fields
-    getRequiredFormFields().forEach(input => {
+    requestAnimationFrame(() => {
+      registerFormElements.modalContentForm.scrollTop = 0;
+    });
+
+    getRequiredFormFields().forEach((input) => {
       input.removeEventListener("input", handleRealTimeValidation);
-      input.addEventListener("input", handleRealTimeValidation);
+      input.removeEventListener("change", handleRealTimeValidation);
+
+      if (input.type === "radio" || input.type === "checkbox") {
+        input.addEventListener("change", handleRealTimeValidation);
+      } else {
+        input.addEventListener("input", handleRealTimeValidation);
+      }
     });
   };
 
   const closeModal = () => {
     elements.body.classList.remove("scroll_lock");
-    elements.registerModal.classList.remove("show");
+    registerModalElements.registerModal.classList.remove("show");
+    registerModalElements.modalHeader.classList.remove("show");
+    registerFormElements.modalContentForm.classList.remove("show");
+    registerConfirmationElements.registerConfirmation.classList.remove("show");
   };
 
   // =========================
   // Mobile Menu Management
   // =========================
-  const openMobileMenu = () => elements.mobileMenu.classList.add("show");
-  const closeMobileMenu = () => elements.mobileMenu.classList.remove("show");
+  const openMobileMenu = () =>
+    mobileMenuElements.mobileMenu.classList.add("show");
+  const closeMobileMenu = () =>
+    mobileMenuElements.mobileMenu.classList.remove("show");
 
   const toggleMobileMenu = () => {
-    const isMenuOpen = elements.mobileMenu.classList.contains("show");
+    const isMenuOpen = mobileMenuElements.mobileMenu.classList.contains("show");
     isMenuOpen ? closeMobileMenu() : openMobileMenu();
   };
 
@@ -116,68 +165,104 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   const validationRules = {
     radio: (element) => {
-      const isLocationSelected = document.querySelector('input[name="location"]:checked') !== null;
-      const formField = element.closest(".form_data");
-      setFormFieldState(formField, !isLocationSelected, isLocationSelected);
-      return isLocationSelected;
+      const radioGroup = document.querySelectorAll(
+        `input[name="${element.name}"]`
+      );
+      const isAnyChecked = Array.from(radioGroup).some(
+        (radio) => radio.checked
+      );
+
+      const containerMap = {
+        location: registerFormElements.tournamentFieldset,
+        newsletter: registerFormElements.newsletterFieldset,
+        terms_of_service: registerFormElements.termsFieldset,
+      };
+
+      const container =
+        containerMap[element.name] ||
+        element.closest("fieldset") ||
+        element.closest(".form_data");
+
+      if (container) {
+        setFormFieldState(container, !isAnyChecked, isAnyChecked);
+      } else {
+        setFormFieldState(element, !isAnyChecked, isAnyChecked);
+      }
+
+      return isAnyChecked;
     },
 
     checkbox: (element) => {
       const isChecked = element.checked;
-      const formField = element.closest(".form_data");
-      setFormFieldState(formField, !isChecked, isChecked);
+
+      const container = element.closest(".form_data");
+      if (container) {
+        setFormFieldState(container, !isChecked, isChecked);
+      } else {
+        setFormFieldState(element, !isChecked, isChecked);
+      }
+
       return isChecked;
     },
 
     text: (element) => {
       const value = element.value.trim();
       const pattern = element.dataset.pattern;
-      const formField = element.parentElement;
+
+      // Find the closest form_data container
+      const container = element.closest(".form_data");
+      const target = container || element;
 
       if (!value) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
       if (pattern && !new RegExp(pattern).test(value)) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
-      setFormFieldState(formField, false, true);
+      setFormFieldState(target, false, true);
       return true;
     },
 
     number: (element) => {
       const value = element.value.trim();
-      const formField = element.parentElement;
+
+      // Find the closest form_data container
+      const container = element.closest(".form_data");
+      const target = container || element;
 
       if (!value) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
-      setFormFieldState(formField, false, true);
+      setFormFieldState(target, false, true);
       return true;
     },
 
     email: (element) => {
       const value = element.value.trim();
-      const formField = element.parentElement;
+
+      // Find the closest form_data container
+      const container = element.closest(".form_data");
+      const target = container || element;
 
       if (!value) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
       // Basic email validation
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(value)) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
-      setFormFieldState(formField, false, true);
+      setFormFieldState(target, false, true);
       return true;
     },
 
@@ -185,17 +270,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const value = element.value.trim();
       const today = new Date();
       const selectedDate = new Date(value);
-      const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
-      const formField = element.parentElement;
+      const minDate = new Date(
+        today.getFullYear() - 100,
+        today.getMonth(),
+        today.getDate()
+      );
+
+      // Find the closest form_data container
+      const container = element.closest(".form_data");
+      const target = container || element;
 
       if (!value || selectedDate > today || selectedDate < minDate) {
-        setFormFieldState(formField, true, false);
+        setFormFieldState(target, true, false);
         return false;
       }
 
-      setFormFieldState(formField, false, true);
+      setFormFieldState(target, false, true);
       return true;
-    }
+    },
   };
 
   // =========================
@@ -209,7 +301,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return validationRules.radio(element);
 
       case "checkbox":
-        return id === "terms_of_service" ? validationRules.checkbox(element) : true;
+        return id === "terms_of_service"
+          ? validationRules.checkbox(element)
+          : true;
 
       case "text":
         return validationRules.text(element);
@@ -234,12 +328,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const validateAllFields = () => {
     const requiredFields = getRequiredFormFields();
+    const requiredRadioGroups = getRequiredRadioGroups();
     let isFormValid = true;
 
-    // Validate all fields and show all errors
-    requiredFields.forEach(field => {
-      const isFieldValid = validateField(field);
-      if (!isFieldValid) isFormValid = false;
+    // Validate all regular fields
+    requiredFields.forEach((field) => {
+      if (field.type !== "radio") {
+        // Skip radio buttons here, handle them separately
+        const isFieldValid = validateField(field);
+        if (!isFieldValid) isFormValid = false;
+      }
+    });
+
+    // Validate radio button groups
+    requiredRadioGroups.forEach((radioButton) => {
+      const isGroupValid = validateField(radioButton);
+      if (!isGroupValid) isFormValid = false;
     });
 
     return isFormValid;
@@ -249,9 +353,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Form Submission
   // =========================
   const submitForm = () => {
-    elements.registerConfirmation.classList.add("show");
-    elements.modalHeader.classList.add("hide");
-    elements.modalContentForm.classList.add("hide");
+    registerConfirmationElements.registerConfirmation.classList.add("show");
+    registerModalElements.modalHeader.classList.remove("show");
+    registerFormElements.modalContentForm.classList.remove("show");
   };
 
   const handleFormSubmission = (e) => {
@@ -273,15 +377,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const eventHandlers = {
     escape: (e) => {
       if (e.key === "Escape") {
-        if (elements.registerModal.classList.contains("show")) closeModal();
-        if (elements.mobileMenu.classList.contains("show")) closeMobileMenu();
+        if (registerModalElements.registerModal.classList.contains("show"))
+          closeModal();
+        if (mobileMenuElements.mobileMenu.classList.contains("show"))
+          closeMobileMenu();
       }
     },
 
     mobileMenu: createEventHandler(() => toggleMobileMenu()),
     signup: createEventHandler(() => openModal()),
     confirmationClose: createEventHandler(() => closeModal()),
-    modalClose: createEventHandler(() => closeModal())
+    modalClose: createEventHandler(() => closeModal()),
   };
 
   // =========================
@@ -292,17 +398,28 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", eventHandlers.escape);
 
     // Mobile menu
-    elements.btnMobileMenu.addEventListener("click", eventHandlers.mobileMenu);
+    mobileMenuElements.btnMobileMenu.addEventListener(
+      "click",
+      eventHandlers.mobileMenu
+    );
 
     // Modal actions
-    elements.signupBtn.addEventListener("click", eventHandlers.signup);
-    elements.confirmationClose.addEventListener("click", eventHandlers.confirmationClose);
-    elements.registerModalClose.addEventListener("click", eventHandlers.modalClose);
+    buttonElements.signupBtn.addEventListener("click", eventHandlers.signup);
+    registerConfirmationElements.confirmationClose.addEventListener(
+      "click",
+      eventHandlers.confirmationClose
+    );
+    registerModalElements.registerModalClose.addEventListener(
+      "click",
+      eventHandlers.modalClose
+    );
 
     // Form submission
-    elements.submitBtn.addEventListener("click", handleFormSubmission);
-    elements.registerForm.addEventListener("submit", handleFormSubmission);
-
+    buttonElements.submitBtn.addEventListener("click", handleFormSubmission);
+    registerFormElements.registerForm.addEventListener(
+      "submit",
+      handleFormSubmission
+    );
   };
   init();
 });
