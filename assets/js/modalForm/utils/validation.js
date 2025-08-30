@@ -7,12 +7,12 @@ const setFormFieldState = (element, hasError, hasSuccess) => {
 };
 
 const getRequiredFormFields = () => {
-  return document.querySelectorAll(".form_data:not(.optional) input");
+  return document.querySelectorAll(".field:not(.optional) input, .info_field:not(.optional) input");
 };
 
 const getRequiredRadioGroups = () => {
   const radioButtons = document.querySelectorAll(
-    ".form_data:not(.optional) input[type='radio']"
+    ".field:not(.optional) input[type='radio'], .info_field:not(.optional) input[type='radio']"
   );
   const groups = new Set();
   radioButtons.forEach((radio) => {
@@ -28,9 +28,9 @@ const getRequiredRadioGroups = () => {
 // =========================
 const getFormElements = () => {
   return {
-    tournamentFieldset: document.getElementById("tournament_fieldset"),
-    newsletterFieldset: document.getElementById("newsletter_fieldset"),
-    termsFieldset: document.getElementById("terms_fieldset"),
+    tournamentFieldset: document.getElementById("tournament-fieldset"),
+    newsletterFieldset: document.getElementById("newsletter-fieldset"),
+    termsFieldset: document.getElementById("terms-fieldset"),
   };
 };
 
@@ -103,7 +103,8 @@ const validationRules = {
     const container =
       containerMap[element.name] ||
       element.closest("fieldset") ||
-      element.closest(".form_data");
+      element.closest(".field") ||
+      element.closest(".info_field");
 
     if (container) {
       setFormFieldState(container, !isAnyChecked, isAnyChecked);
@@ -117,7 +118,7 @@ const validationRules = {
   checkbox: (element) => {
     const isChecked = element.checked;
 
-    const container = element.closest(".form_data");
+    const container = element.closest(".field") || element.closest(".info_field");
     if (container) {
       setFormFieldState(container, !isChecked, isChecked);
     } else {
@@ -131,8 +132,8 @@ const validationRules = {
     const value = element.value.trim();
     const validator = fieldValidators[element.id];
 
-    // Find the closest form_data container
-    const container = element.closest(".form_data");
+    // Find the closest field container
+    const container = element.closest(".field") || element.closest(".info_field");
     const target = container || element;
 
     if (!value) {

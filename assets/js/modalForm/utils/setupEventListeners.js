@@ -37,8 +37,12 @@ const setupEventListeners = () => {
   }
 
   // Modal actions
-  if (window.buttonRefs?.signup) {
-    window.buttonRefs.signup.addEventListener("click", eventHandlers.register);
+  if (window.buttonRefs?.signupDesktop) {
+    window.buttonRefs.signupDesktop.addEventListener("click", eventHandlers.register);
+  }
+
+  if (window.buttonRefs?.signupMobile) {
+    window.buttonRefs.signupMobile.addEventListener("click", eventHandlers.register);
   }
 
   if (window.confirmationRefs?.closeButton) {
@@ -63,9 +67,9 @@ const setupEventListeners = () => {
     );
   }
 
-  if (document.getElementById("register_form")) {
+  if (document.getElementById("signup-form")) {
     document
-      .getElementById("register_form")
+      .getElementById("signup-form")
       .addEventListener("submit", window.handleFormSubmission);
   }
 };

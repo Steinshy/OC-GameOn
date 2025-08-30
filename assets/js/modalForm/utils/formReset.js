@@ -6,33 +6,35 @@ const pageRefs = {
 };
 
 const modalRefs = {
-  modal: document.getElementById("register_modal"),
-  header: document.getElementById("modal_header"),
-  closeButton: document.getElementById("register_modal_close"),
-  content: document.getElementById("modal_content"),
-  contentForm: document.getElementById("modal_content_form"),
+  modal: document.getElementById("signup-modal"),
+  header: document.getElementById("modal-header"),
+  closeButton: document.getElementById("modal-close"),
+  content: document.getElementById("modal-content"),
+  contentForm: document.getElementById("form-section"),
+  footer: document.getElementById("modal-footer"),
 };
 
 const registrationFormRefs = {
-  form: document.getElementById("register_form"),
-  firstName: document.getElementById("first_name_field"),
-  lastName: document.getElementById("last_name_field"),
-  email: document.getElementById("email_field"),
-  birthdate: document.getElementById("birthdate_field"),
-  tournamentCount: document.getElementById("tournament_count_field"),
-  tournamentFieldset: document.getElementById("tournament_fieldset"),
-  newsletterFieldset: document.getElementById("newsletter_fieldset"),
-  termsFieldset: document.getElementById("terms_fieldset"),
+  form: document.getElementById("signup-form"),
+  firstName: document.getElementById("first-name-field"),
+  lastName: document.getElementById("last-name-field"),
+  email: document.getElementById("email-field"),
+  birthdate: document.getElementById("birthdate-field"),
+  tournamentCount: document.getElementById("tournament-count-field"),
+  tournamentFieldset: document.getElementById("tournament-fieldset"),
+  newsletterFieldset: document.getElementById("newsletter-fieldset"),
+  termsFieldset: document.getElementById("terms-fieldset"),
 };
 
 const confirmationRefs = {
-  container: document.getElementById("register_confirmation"),
-  closeButton: document.getElementById("confirmation_close"),
+  container: document.getElementById("confirmation"),
+  closeButton: document.getElementById("confirm-close"),
 };
 
 const buttonRefs = {
-  signup: document.getElementById("btn_signup"),
-  submit: document.getElementById("submit_btn"),
+  signupDesktop: document.getElementById("signup-desktop"),
+  signupMobile: document.getElementById("signup-mobile"),
+  submit: document.getElementById("submit-btn"),
 };
 
 const getModalElements = () => {
@@ -54,6 +56,7 @@ const getModalElements = () => {
     termsFieldset: registrationFormRefs.termsFieldset,
     registerConfirmation: confirmationRefs.container,
     confirmationClose: confirmationRefs.closeButton,
+    footer: modalRefs.footer,
   };
 };
 
@@ -104,6 +107,7 @@ const resetForm = () => {
   confirmationRefs.container.classList.remove("show");
   modalRefs.contentForm.classList.add("show");
   modalRefs.header.classList.add("show");
+  modalRefs.footer.classList.add("show");
 
   // Clear URL parameters
   clearURL();
@@ -121,6 +125,7 @@ const openModal = () => {
   modalRefs.modal.classList.add("show");
   modalRefs.header.classList.add("show");
   modalRefs.contentForm.classList.add("show");
+  modalRefs.footer.classList.add("show");
 
   // Scroll to top of modal content
   requestAnimationFrame(() => {
@@ -139,6 +144,7 @@ const closeModal = () => {
   modalRefs.modal.classList.remove("show");
   modalRefs.header.classList.remove("show");
   modalRefs.contentForm.classList.remove("show");
+  modalRefs.footer.classList.remove("show");
   confirmationRefs.container.classList.remove("show");
 
   // Clear URL parameters when closing modal
@@ -153,6 +159,7 @@ const showConfirmation = () => {
   confirmationRefs.container.classList.add("show");
   modalRefs.header.classList.remove("show");
   modalRefs.contentForm.classList.remove("show");
+  modalRefs.footer.classList.remove("show");
 
   // Clear URL parameters after successful submission
   clearURL();
