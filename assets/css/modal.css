@@ -3,9 +3,9 @@
 ========================= */
 
 /* =========================
-  MODAL BACKDROP & CONTAINER
+  Modal Backdrop & Container
 ========================= */
-/* Modal backdrop */
+/* Modal Backdrop */
 .modal {
   display: none;
   visibility: hidden;
@@ -19,14 +19,13 @@
   z-index: 9999;
 }
 
-/* Modal visible */
 .modal.show {
   display: block;
   visibility: visible;
   pointer-events: auto;
 }
 
-/* Modal content container */
+/* Modal Container */
 .modal-content {
   position: absolute;
   top: 50%;
@@ -37,54 +36,41 @@
   width: 100%;
   height: 100%;
   margin: 0 auto;
-
-  /* Visual */
   background-color: var(--color-modal-bg);
   color: var(--color-white);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-default);
-
-  /* Layout */
   display: flex;
   flex-direction: column;
   overflow: hidden;
-
-  /* Interactions */
   pointer-events: auto;
   transition: all var(--transition-normal);
 }
 
 /* =======================
-  MODAL HEADER
+  Modal Header
 ========================= */
-
-/* Modal header container */
 .modal-header {
   display: none;
   visibility: hidden;
   position: relative;
   flex-shrink: 0;
-
-  /* Layout */
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   padding: var(--space-lg);
-
-  /* Visual styling */
   background: linear-gradient(135deg, var(--color-modal-bg) 0%, #1a1a1a 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Modal header visible */
 .modal-header.show {
   display: flex;
   visibility: visible;
   transition: all var(--transition-normal);
 }
 
-/* Header content */
+/* Header Content */
 .header-content {
   display: flex;
   flex-direction: column;
@@ -93,7 +79,6 @@
   position: relative;
 }
 
-/* Modal title */
 .header-content h3 {
   font-size: 1.75rem;
   font-weight: var(--font-weight-semibold);
@@ -102,7 +87,6 @@
   margin-bottom: var(--space-sm);
 }
 
-/* Modal subtitle */
 .header-content p {
   font-size: 1rem;
   font-weight: var(--font-weight-light);
@@ -112,87 +96,70 @@
 }
 
 /* =======================
-  MODAL CLOSE BUTTON
+  Modal Close Button
 ========================= */
-
-/* Close button */
 .modal-close {
   position: absolute;
   top: var(--space-lg);
   right: var(--space-lg);
   z-index: 10;
-
-  /* Size */
   width: 40px;
   height: 40px;
   border-radius: 50%;
-
-  /* Layout */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Visual styling */
   background-color: rgba(255, 255, 255, 0.1);
   transition: background-color var(--transition-fast);
 }
 
-/* Close button */
+.modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .modal-close i {
   font-size: 1.5rem;
   color: var(--color-white);
 }
 
-/* Close button hover */
-.modal-close:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
 /* =======================
-  MODAL FORM SECTION
+  Modal Form Section
 ========================= */
-/* Form section container */
 .form-section {
   display: none;
   visibility: hidden;
   overflow-y: auto;
 }
 
-/* Form section visible */
 .form-section.show {
   display: grid;
   visibility: visible;
 }
 
-/* Main form wrapper */
+/* Main Form */
 .main-form {
   display: grid;
   padding: var(--space-lg);
   gap: var(--space-lg);
 }
 
-/* Main info fields */
+/* Main Info Fields */
 .main_info_fields {
   display: grid;
   gap: var(--space-lg);
 }
 
-/* Full-width info fields */
 .main_info_fields .info_field {
   width: 100%;
 }
 
-/* =======================
-  FORM INPUT FIELDS
-========================= */
-/* Base field container */
 .field,
 .info_field {
   display: grid;
   margin-bottom: var(--space-xs);
 }
 
-/* Label */
+/* Labels */
 .field label,
 .info_field label {
   font-size: 1rem;
@@ -201,24 +168,19 @@
   margin-bottom: var(--space-sm);
 }
 
-/* Input field base */
+/* Input Fields */
 .field input,
 .info_field input {
   font-size: 1rem;
   padding: var(--space-sm);
   color: var(--color-white);
-
-  /* Border and background */
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
   background-color: rgba(255, 255, 255, 0.05);
-
-  /* Smooth transitions for interactive states */
-  transition: border-color var(--transition-normal),
-    background-color var(--transition-normal);
+  transition: border-color var(--transition-normal), background-color var(--transition-normal);
 }
 
-/* Input field focus */
+/* Input Field Focus */
 .field input:focus,
 .info_field input:focus {
   outline: none;
@@ -227,61 +189,22 @@
   box-shadow: 0 0 0 3px rgba(227, 63, 44, 0.1);
 }
 
-/* Placeholder text */
+/* Input Placeholder Text */
 .field input::placeholder,
 .info_field input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* =======================
-  FORM VALIDATION STATES
-========================= */
-
-/* Error message */
-.field .error,
-.info_field .error,
-.radio_choices .error,
-.checkbox_choices .error {
-  display: none;
-  font-size: 1rem;
-  font-weight: var(--font-weight-light);
-  color: var(--color-error);
-  margin-top: var(--space-xs);
-}
-
-/* Show error message and apply error border in one rule */
-.field[data-error-visible="true"] .error,
-.info_field[data-error-visible="true"] .error {
-  display: block;
-}
-
-/* Show error message for fieldset errors (when error is sibling of fieldset) */
-.radio_choices fieldset[data-error-visible="true"] ~ .error,
-.checkbox_choices fieldset[data-error-visible="true"] ~ .error {
-  display: block;
-}
-
-/* Show error border in one rule */
-.field[data-error-visible="true"] input,
-.info_field[data-error-visible="true"] input {
-  border: 2px solid var(--color-error);
-}
-
-/* Show success border in one rule */
-.field[data-success-visible="true"] input,
-.info_field[data-success-visible="true"] input {
-  border: 2px solid var(--color-success);
-}
 
 /* =======================
-  FORM CHOICE CONTROLS
+  Form Choice Controls
 ========================= */
-/* Radio choices */
+/* Radio Choices */
 .radio_choices {
   display: grid;
 }
 
-/* Fieldset base styling */
+/* Fieldset Base Styling */
 .radio_choices fieldset {
   border: none;
   padding: 0;
@@ -304,12 +227,12 @@
 /* =======================
   RADIO BUTTON
 ========================= */
-/* Radio button checkmark - circular shape */
+/* Radio Button Checkmark */
 .radio_choices .radio .checkmark {
   border-radius: 50%;
 }
 
-/* Radio button inner dot (pseudo-element) */
+/* Radio Button Checkmark Inner Dot */
 .radio_choices .radio .checkmark:after {
   content: "";
   position: absolute;
@@ -323,15 +246,16 @@
   transition: transform var(--transition-fast);
 }
 
-.radio_choices .radio input:checked ~ .checkmark:after {
+.radio_choices .radio input:checked~.checkmark:after {
   border-color: var(--color-success);
   transform: scale(1);
 }
 
-/* Radio button hover effect */
-.radio_choices .radio:hover input ~ .checkmark {
+/* Radio Button Hover */
+.radio_choices .radio:hover input~.checkmark {
   border-color: var(--color-success);
 }
+
 
 /* =======================
   CUSTOM CONTROL BASE STYLES
@@ -375,10 +299,9 @@
 }
 
 /* =========================
-  CHECKBOX
+  Checkbox
 ========================= */
-
-/* Checkbox choices */
+/* Checkbox Choices */
 .checkbox_choices {
   display: flex;
   flex-direction: column;
@@ -388,7 +311,7 @@
   margin: 0;
 }
 
-/* Checkbox choices legend */
+/* Checkbox Legend */
 .checkbox_choices legend {
   font-size: 1rem;
   font-weight: var(--font-weight-medium);
@@ -396,7 +319,7 @@
   margin-bottom: var(--space-sm);
 }
 
-/* Checkbox checkmark container */
+/* Checkbox Checkmark */
 .checkbox_choices .checkbox .checkmark {
   display: flex;
   align-items: center;
@@ -404,32 +327,70 @@
   border-radius: var(--radius-sm);
 }
 
-/* Checkbox icon */
+/* Checkbox Checkmark Icon */
 .checkbox_choices .checkbox .checkmark i {
   opacity: 0;
   transition: opacity var(--transition-fast);
 }
 
-/* Checkbox checked state */
-.checkbox_choices .checkbox input:checked ~ .checkmark {
+/* =======================
+  Form Validation Messages
+========================= */
+/* Fieldset Error Messages */
+.field .error,
+.info_field .error,
+.radio_choices .error,
+.checkbox_choices .error {
+  display: none;
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  color: var(--color-error);
+  margin-top: var(--space-xs);
+}
+
+/* Show Fieldset Error Messages */
+.field[data-error-visible="true"] .error,
+.info_field[data-error-visible="true"] .error {
+  display: block;
+}
+
+/* Show Fieldset Error Messages for Fieldset Errors */
+.radio_choices fieldset[data-error-visible="true"]~.error,
+.checkbox_choices fieldset[data-error-visible="true"]~.error {
+  display: block;
+}
+
+/* Show Fieldset Error Border */
+.field[data-error-visible="true"] input,
+.info_field[data-error-visible="true"] input {
+  border: 2px solid var(--color-error);
+}
+
+/* Show Fieldset Success Border */
+.field[data-success-visible="true"] input,
+.info_field[data-success-visible="true"] input {
+  border: 2px solid var(--color-success);
+}
+
+/* Checkbox Checked State */
+.checkbox_choices .checkbox input:checked~.checkmark {
   background-color: var(--color-success);
   border-color: var(--color-success);
 }
 
-/* Show checkbox icon when checked */
-.checkbox_choices .checkbox input:checked ~ .checkmark i {
+/* Show Checkbox Checkmark Icon */
+.checkbox_choices .checkbox input:checked~.checkmark i {
   opacity: 1;
 }
 
-/* Checkbox hover effect */
-.checkbox_choices .checkbox:hover input ~ .checkmark {
+/* Checkbox Checkmark Hover */
+.checkbox_choices .checkbox:hover input~.checkmark {
   border-color: var(--color-success);
 }
 
 /* =========================
-  MODAL FOOTER
+  Modal Footer
 ========================= */
-/* Modal footer container */
 .modal-footer {
   display: none;
   visibility: hidden;
@@ -445,30 +406,15 @@
   visibility: visible;
 }
 
-/* Submit button */
+/* Submit Button */
 .modal-footer button {
   width: 100%;
-  height: 3.5rem;
-  font-size: 1.25rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
 
-.modal-footer button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(227, 63, 44, 0.3);
 }
 
 /* =========================
-  MODAL CONFIRMATION
+  Modal Confirmation
 ========================= */
-
-/* Confirmation section */
 .confirm {
   display: none;
   visibility: hidden;
@@ -483,7 +429,7 @@
   visibility: visible;
 }
 
-/* Confirmation content */
+/* Confirmation Content */
 .confirm-content {
   display: flex;
   flex-direction: column;
@@ -502,26 +448,8 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Confirmation close button */
+/* Confirmation Close Button */
 .confirm_close {
   display: flex;
   justify-content: center;
-}
-
-/* Confirmation close button */
-.confirm_close button {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  padding: var(--space-md) var(--space-lg);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: transform var(--transition-normal);
-}
-
-/* Confirmation close button hover effect */
-.confirm_close button:hover {
-  transform: translateY(-2px);
 }

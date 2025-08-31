@@ -1,19 +1,20 @@
 // =========================
-// Form Reset
+// URL & Scroll Reset
 // =========================
+const clearURL = () =>
+  window.history?.replaceState &&
+  window.history.replaceState({}, document.title, window.location.pathname);
+const resetScroll = () =>
+  [modalRefs?.modalContent, formRefs?.formSection].forEach(
+    (element) => element && (element.scrollTop = 0)
+  );
 
 // =========================
-// URL & Scroll
-// =========================
-const clearURL = () => window.history?.replaceState && window.history.replaceState({}, document.title, window.location.pathname);
-const resetScroll = () => [modalRefs?.modalContent, formRefs?.formSection].forEach(element => element && (element.scrollTop = 0));
-
-// =========================
-// Modal Form State
+// Register Form State
 // =========================
 const setModalFormState = (isOpen) => {
   if (isOpen) {
-    // Opening modal - add classes immediately
+    // Opening register - add classes immediately
     pageRefs?.body?.classList.add("scroll_lock");
     modalRefs?.modalSignup?.classList.add("show");
     modalRefs?.modalContent?.classList.add("show");
@@ -26,7 +27,7 @@ const setModalFormState = (isOpen) => {
       setupRealTimeValidation();
     }
   } else {
-    // Closing modal - add closing animation classes
+    // Closing register - add closing animation classes
     modalRefs?.modalSignup?.classList.add("closing");
     modalRefs?.modalContent?.classList.add("closing");
 
@@ -44,12 +45,14 @@ const setModalFormState = (isOpen) => {
 };
 
 // =========================
-// Modal Confirmation State
+// Register Confirmation State
 // =========================
+// Show Confirmation
 const showConfirmation = () => {
   confirmRefs?.confirm?.classList.add("show");
 };
 
+// Hide Form Sections
 const hideFormSections = () => {
   modalRefs?.modalHeader?.classList.remove("show");
   modalRefs?.modalFooter?.classList.remove("show");
@@ -57,8 +60,9 @@ const hideFormSections = () => {
 };
 
 // =========================
-// Clear Validation States in all inputs
+// Clear Validation States in all inputs in all form fields
 // =========================
+// Clear Form Inputs
 const clearFormInputs = () => {
   if (formInputsMapRefs && clearFormFieldState) {
     Object.values(formInputsMapRefs).forEach((field) => {
@@ -67,7 +71,7 @@ const clearFormInputs = () => {
   }
 };
 
-
+// Clear Radios
 const clearRadios = () => {
   if (validationRefs && clearFormFieldState) {
     Object.values(validationRefs.radioButtonsInputs || {}).forEach((radio) => {
@@ -76,6 +80,7 @@ const clearRadios = () => {
   }
 };
 
+// Clear Checkboxes
 const clearCheckboxes = () => {
   if (validationRefs && clearFormFieldState) {
     Object.values(validationRefs.checkboxesInputs || {}).forEach((checkbox) => {
@@ -85,8 +90,9 @@ const clearCheckboxes = () => {
 };
 
 // =========================
-// Form Reset Functions
+// Register Form Reset Functions
 // =========================
+// Reset Form
 const resetForm = () => {
   formRefs?.formSignup?.reset();
   clearFormInputs();

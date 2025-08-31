@@ -1,29 +1,32 @@
-// =========================
-// DOM Element References
-// =========================
+// Register DOM Element References
 const mobileMenuRefs = {
   menu: document.getElementById("mobile_menu"),
-  toggleButton: document.getElementById("btn_mobile_menu"),
+  toggleButton: document.getElementById("btn_mobile_menu")
 };
 
-// =========================
-// Mobile Menu Functions
-// =========================
+// Open Mobile Menu
 const openMobileMenu = () => {
   mobileMenuRefs.menu.classList.add("show");
   mobileMenuRefs.toggleButton.setAttribute("aria-expanded", "true");
   mobileMenuRefs.menu.setAttribute("aria-hidden", "false");
 };
 
+// Close Mobile Menu by Field ID
 const closeMobileMenu = () => {
   mobileMenuRefs.menu.classList.remove("show");
   mobileMenuRefs.toggleButton.setAttribute("aria-expanded", "false");
   mobileMenuRefs.menu.setAttribute("aria-hidden", "true");
 };
 
-const toggleMobileMenu = () => mobileMenuRefs.menu.classList.contains("show") ? closeMobileMenu() : openMobileMenu();
+// Toggle Mobile Menu
+const toggleMobileMenu = () =>
+  mobileMenuRefs.menu.classList.contains("show")
+    ? closeMobileMenu()
+    : openMobileMenu();
 
-const isMobileMenuVisible = () => mobileMenuRefs.menu.classList.contains("show");
+// Check if Mobile Menu is Visible
+const isMobileMenuVisible = () =>
+  mobileMenuRefs.menu.classList.contains("show");
 
 // =========================
 // Window Exports

@@ -1,9 +1,9 @@
 /* =========================
-  GAMEON LOADER STYLES
+  GameOn loader styles
 ========================= */
 
 /* =========================
-  LOADER CONTAINER
+  Loader Container
 ========================= */
 .loader-container {
   position: fixed;
@@ -21,7 +21,7 @@
 }
 
 /* =========================
-  LOADER CONTENT
+  Loader Container
 ========================= */
 .loader-content {
   display: flex;
@@ -31,7 +31,7 @@
 }
 
 /* =========================
-  GAMING LOGO SPINNER
+  Gaming Logo Spinner
 ========================= */
 .loader-logo {
   width: 80px;
@@ -52,7 +52,7 @@
 }
 
 /* =========================
-  LOADING TEXT
+  Loading Text
 ========================= */
 .loader-text {
   color: var(--color-white);
@@ -70,7 +70,7 @@
 }
 
 /* =========================
-  PROGRESS BAR
+  Progress Bar
 ========================= */
 .loader-progress {
   width: 300px;
@@ -83,17 +83,15 @@
 
 .loader-progress-fill {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary) 0%,
-    var(--color-secondary) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--color-primary) 0%,
+      var(--color-secondary) 100%);
   border-radius: 2px;
   animation: progressFill 1.2s ease-in-out forwards;
 }
 
 /* =========================
-  BOUNCING DOTS
+  Bouncing Dots
 ========================= */
 .loader-dots {
   display: flex;
@@ -118,14 +116,14 @@
 }
 
 /* =========================
-  CONTENT FADE IN
+  Content Fade In
 ========================= */
 .main-content {
   animation: fadeInContent 0.4s ease-out 1.5s both;
 }
 
 /* =========================
-  RESPONSIVE DESIGN
+  Responsive Design
 ========================= */
 @media (max-width: 768px) {
   .loader-logo {
@@ -147,7 +145,7 @@
 }
 
 /* =========================
-  REDUCED MOTION SUPPORT
+  Reduced Motion Support
 ========================= */
 @media (prefers-reduced-motion: reduce) {
   .loader-logo {

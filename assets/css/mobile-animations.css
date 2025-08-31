@@ -1,12 +1,6 @@
 /* =========================
-  MOBILE MENU ANIMATIONS
+  Mobile menu button animation
 ========================= */
-
-/* =========================
-  MOBILE MENU BUTTON ANIMATIONS
-========================= */
-
-/* Mobile menu button animation */
 #btn_mobile_menu {
   transition: transform var(--transition-normal);
 }
@@ -15,27 +9,22 @@
   transition: transform var(--transition-normal);
 }
 
-/* Rotate hamburger icon when menu is active */
 #btn_mobile_menu[aria-expanded="true"] i {
   transform: rotate(90deg);
 }
 
 /* =========================
-  MOBILE MENU TOGGLE ANIMATIONS
+  Mobile menu toggle animations
 ========================= */
-
-/* Mobile menu toggle container transitions */
 .mobile_menu_toggle {
   line-height: 1;
   white-space: nowrap;
 }
 
-/* Mobile menu list item transitions */
 .mobile_toggle_list li {
   transition: background-color var(--transition-fast);
 }
 
-/* Header logo hover animation */
 .header_logo {
   transition: transform var(--transition-fast);
 }
@@ -44,7 +33,6 @@
   transform: scale(1.02);
 }
 
-/* Navigation button hover animations */
 .header_nav_links button:hover {
   transform: scale(1.1);
 }

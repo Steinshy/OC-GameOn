@@ -1,9 +1,9 @@
 // =========================
-// Main Event Listeners
+// Event Listeners Setup
 // =========================
 const setupEventListeners = () => {
   const eventHandlers = {
-    // Keyboard Listeners
+    // Keyboard Escape Listeners
     escape: (e) => {
       if (e.key === "Escape") {
         if (modalRefs?.modalSignup?.classList.contains("show")) {
@@ -15,22 +15,22 @@ const setupEventListeners = () => {
       }
     },
 
-    // Mobile Menu Listeners
+    // Mobile Menu Open Listeners
     mobileMenu: createEventHandler(() => toggleMobileMenu()),
 
-    // Modal Listeners
+    // Register Open Listeners
     register: createEventHandler(() => {
       resetForm();
       setModalFormState(true);
     }),
 
-    // Confirmation Listeners
+    // Register Confirmation Listeners
     confirmClose: createEventHandler(() => {
       setModalFormState(false);
     }),
 
-    // Modal Close Listeners
-    modalClose: createEventHandler(() => setModalFormState(false)),
+    // Register Close Listeners
+    modalClose: createEventHandler(() => setModalFormState(false))
   };
 
   // Attach Event Listeners

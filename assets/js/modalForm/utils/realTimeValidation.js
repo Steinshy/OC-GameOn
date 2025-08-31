@@ -1,5 +1,5 @@
 // =========================
-// Get Required Fields
+// Form Required Fields
 // =========================
 const getRequiredFields = () => {
   // Return actual form fields, radio buttons and checkboxes that require validation
@@ -14,7 +14,7 @@ const getRequiredFields = () => {
 };
 
 // =========================
-// Setup Real-time Validation
+// Real-time Validation
 // =========================
 const setupRealTimeValidation = () => {
   if (!validateField || !handleRealTimeValidation) {

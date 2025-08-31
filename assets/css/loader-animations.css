@@ -3,13 +3,14 @@
 ========================= */
 
 /* =========================
-  LOADER HIDE ANIMATION
+  Loader Hide Animation
 ========================= */
 @keyframes hideLoader {
   0% {
     opacity: 1;
     visibility: visible;
   }
+
   100% {
     opacity: 0;
     visibility: hidden;
@@ -18,48 +19,59 @@
 }
 
 /* =========================
-  GAMING CUBE LOADER
+  Gaming Cube Loader
 ========================= */
 @keyframes gamingCubeLoader {
+
   0%,
   100% {
     background-position: 0% 0%, 100% 0%;
   }
+
   15% {
     background-position: 0% 25%, 100% 50%;
   }
+
   30% {
     background-position: 0% 50%, 100% 25%;
   }
+
   40% {
     background-position: 0% 50%, 100% 50%;
   }
+
   50% {
     background-position: 0% 50%, 100% 50%, 0% 75%;
   }
+
   60% {
     background-position: 0% 50%, 100% 50%, 0% 100%, 100% 0%;
   }
+
   70% {
     background-position: 0% 50%, 100% 50%, 0% 100%, 100% 75%;
   }
+
   80% {
     background-position: 0% 50%, 100% 50%, 0% 100%, 100% 100%;
   }
+
   90% {
     background-position: 0% 25%, 100% 50%, 0% 75%, 100% 100%;
   }
 }
 
 /* =========================
-  CONTROLLER PULSE ANIMATION
+  Controller Pulse Animation
 ========================= */
 @keyframes controllerPulse {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.1);
     opacity: 0.8;
@@ -67,46 +79,52 @@
 }
 
 /* =========================
-  SPINNING LOGO ANIMATION
+  Spinning Logo Animation
 ========================= */
 @keyframes spinLogo {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
 /* =========================
-  PROGRESS BAR ANIMATION
+  Progress Bar Animation
 ========================= */
 @keyframes progressFill {
   0% {
     width: 0%;
   }
+
   25% {
     width: 30%;
   }
+
   50% {
     width: 60%;
   }
+
   75% {
     width: 85%;
   }
+
   100% {
     width: 100%;
   }
 }
 
 /* =========================
-  FADE IN CONTENT
+  Fade In Content
 ========================= */
 @keyframes fadeInContent {
   0% {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -114,15 +132,17 @@
 }
 
 /* =========================
-  LOADER BOUNCE ANIMATION
+  Loader Bounce Animation
 ========================= */
 @keyframes loaderBounce {
+
   0%,
   80%,
   100% {
     transform: scale(0);
     opacity: 0.5;
   }
+
   40% {
     transform: scale(1);
     opacity: 1;

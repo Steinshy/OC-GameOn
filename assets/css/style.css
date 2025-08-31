@@ -131,6 +131,24 @@ main {
   padding: var(--space-lg);
 }
 
+.custom_style button {
+  width: 16rem;
+  height: 4rem;
+  cursor: pointer;
+  background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-primary) 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-default);
+  border: none;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.custom_style button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
 .header_nav {
   display: flex;
   flex-direction: row;
@@ -142,19 +160,14 @@ main {
 .header_logo {
   object-fit: contain;
   width: auto;
-  height: 1.9rem;
+  height: 2rem;
 }
 
 /* =========================
-  NAVIGATION
+  Header Navigation
 ========================= */
 .header_nav_links {
   position: relative;
-}
-
-.header_nav_links button {
-  display: block;
-  background: transparent;
 }
 
 .header_nav_links button i {
@@ -162,12 +175,12 @@ main {
   font-size: 1.5rem;
 }
 
+/* Mobile Toggle Menu */
 .mobile_menu_toggle {
   line-height: 1;
   white-space: nowrap;
 }
 
-/* Mobile Navigation Menu */
 .mobile_toggle_list {
   display: grid;
   gap: var(--space-sm);
@@ -185,6 +198,7 @@ main {
   color: var(--color-white);
 }
 
+/* White Line on Active Link */
 .mobile_toggle_list li.active a:after {
   content: "";
   position: absolute;
@@ -196,19 +210,20 @@ main {
   border-radius: 1px;
 }
 
+/* Background color on Hover */
 .mobile_toggle_list li:not(:first-child):hover {
   background-color: var(--color-secondary);
   color: var(--color-white);
 }
 
 .mobile_toggle_list li a {
-  font-size: 1.25rem;
   position: relative;
+  font-size: 1.25rem;
   display: inline-block;
 }
 
 /* =========================
-  MAIN CONTENT AREA
+  Main Container
 ========================= */
 .main_container {
   display: flex;
@@ -219,12 +234,6 @@ main {
   height: 800px;
   position: relative;
   overflow: hidden;
-}
-
-.main_container picture {
-  inset: 0;
-  height: 100%;
-  width: 100%;
 }
 
 .container_section {
@@ -240,10 +249,17 @@ main {
   font-weight: var(--font-weight-semibold);
 }
 
-.container_section > p {
+.container_section>p {
   font-size: 1.5rem;
   text-align: center;
   font-weight: var(--font-weight-light);
+}
+
+/* Main Container Picture */
+.main_container picture {
+  inset: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .container_img {
@@ -262,21 +278,14 @@ main {
 }
 
 /* =========================
-  BUTTONS
+  Register Button Mobile & Desktop
 ========================= */
-
-/* =========================
-  Register Button Mobile
-========================= */
-.desktop_container_button {
-  display: none;
-}
-
+/* Mobile Register Button (default - mobile first) */
 .mobile_container_button {
   display: grid;
   grid-template-rows: auto auto auto;
-  top: 50px;
   position: relative;
+  top: 50px;
   justify-content: center;
   height: auto;
   width: 100%;
@@ -284,30 +293,13 @@ main {
   z-index: 1;
 }
 
-.mobile_container_button button {
-  width: 16rem;
-  height: 4rem;
-  cursor: pointer;
-  background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-primary) 100%);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-default);
-  border: none;
-  font-size: 1.5rem;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-white);
-}
-
-.mobile_container_button button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.mobile_container_button button {
-  z-index: 1;
+/* Hide Desktop Button on Mobile */
+.desktop_container_button {
+  display: none;
 }
 
 /* =========================
-  FOOTER
+  Footer
 ========================= */
 footer {
   display: grid;
@@ -324,11 +316,13 @@ footer p {
 }
 
 /* =========================
-  RESPONSIVE DESIGN
+  Media Queries Responsive Design
+
+  Mobile Styles (1024px and below)
 ========================= */
-/* Mobile Styles (1024px and below) */
 @media (max-width: 1024px) {
-  /* Header - Mobile Menu */
+
+  /* Mobile Toggle Menu */
   .mobile_menu_toggle {
     position: absolute;
     opacity: 0;
@@ -355,19 +349,24 @@ footer p {
   }
 }
 
-/* Desktop Styles (1025px and above) */
+/* =========================
+  Media Queries Responsive Design
+
+  Desktop Styles (1025px and above)
+========================= */
 @media (min-width: 1025px) {
+
   body,
   main {
     max-width: var(--max-width-desktop);
   }
 
-  /* Hide mobile menu button on desktop */
+  /* Hide Mobile Toggle Menu */
   .header_nav_links button {
     display: none;
   }
 
-  /* Desktop Navigation */
+  /* Desktop Toggle Menu */
   .mobile_menu_toggle {
     transition: none;
     transform: none;
@@ -382,23 +381,14 @@ footer p {
     pointer-events: auto;
   }
 
-  .container_img {
-    display: grid;
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    left: 50%;
-    grid-template-columns: 1fr;
-    z-index: 0;
-  }
-
+  /* Main Container */
   .main_container {
     display: grid;
     box-shadow: var(--shadow-default);
     height: 864px;
   }
 
-  /* Main Container Background */
+  /* Main Background Container Before */
   .main_container::before {
     content: "";
     position: absolute;
@@ -408,6 +398,17 @@ footer p {
     height: 100%;
     background: #232323;
     z-index: 1;
+  }
+
+  /* Main Container Image */
+  .container_img {
+    display: grid;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    grid-template-columns: 1fr;
+    z-index: 0;
   }
 
   .main_container picture {
@@ -424,6 +425,7 @@ footer p {
     width: 100%;
   }
 
+  /* Main Container Section */
   .container_section {
     align-items: start;
     justify-items: start;
@@ -443,6 +445,7 @@ footer p {
     text-align: start;
   }
 
+  /* Scroll Lock */
   .scroll_lock {
     overflow: hidden;
   }
@@ -450,33 +453,18 @@ footer p {
   /* =========================
     Register Button Desktop
   ========================= */
-  .mobile_container_button {
-    display: none;
-  }
-
+  /* Show Desktop Button on Desktop */
   .desktop_container_button {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: end;
     color: var(--color-white);
-  }
-
-  .desktop_btn_signup {
-    width: 15.625rem;
-    height: 3.75rem;
-    cursor: pointer;
-    background: linear-gradient(0deg, var(--color-primary) 0%, var(--color-primary) 100%);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-default);
-    border: none;
-    font-size: 1.5rem;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     z-index: 1;
   }
 
-  .desktop_btn_signup:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-hover);
+  /* Hide Mobile Register Button on Desktop */
+  .mobile_container_button {
+    display: none;
   }
 }

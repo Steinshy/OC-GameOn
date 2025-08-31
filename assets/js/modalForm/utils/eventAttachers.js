@@ -14,7 +14,10 @@ const attachKeyboardListeners = (eventHandlers) => {
 // =========================
 const attachMobileMenuListeners = (eventHandlers) => {
   if (mobileMenuRefs?.toggleButton) {
-    mobileMenuRefs.toggleButton.addEventListener("click", eventHandlers.mobileMenu);
+    mobileMenuRefs.toggleButton.addEventListener(
+      "click",
+      eventHandlers.mobileMenu
+    );
   }
 };
 
@@ -23,13 +26,22 @@ const attachMobileMenuListeners = (eventHandlers) => {
 // =========================
 const attachModalListeners = (eventHandlers) => {
   if (buttonRefs?.signupButtonDesktop) {
-    buttonRefs.signupButtonDesktop.addEventListener("click", eventHandlers.register);
+    buttonRefs.signupButtonDesktop.addEventListener(
+      "click",
+      eventHandlers.register
+    );
   }
   if (buttonRefs?.signupButtonMobile) {
-    buttonRefs.signupButtonMobile.addEventListener("click", eventHandlers.register);
+    buttonRefs.signupButtonMobile.addEventListener(
+      "click",
+      eventHandlers.register
+    );
   }
   if (buttonRefs?.modalCloseButton) {
-    buttonRefs.modalCloseButton.addEventListener("click", eventHandlers.modalClose);
+    buttonRefs.modalCloseButton.addEventListener(
+      "click",
+      eventHandlers.modalClose
+    );
   }
 };
 
@@ -38,7 +50,10 @@ const attachModalListeners = (eventHandlers) => {
 // =========================
 const attachConfirmationListeners = (eventHandlers) => {
   if (confirmRefs?.confirmCloseButton) {
-    confirmRefs.confirmCloseButton.addEventListener("click", eventHandlers.confirmClose);
+    confirmRefs.confirmCloseButton.addEventListener(
+      "click",
+      eventHandlers.confirmClose
+    );
   }
 };
 
@@ -47,7 +62,10 @@ const attachConfirmationListeners = (eventHandlers) => {
 // =========================
 const attachFormListeners = () => {
   if (buttonRefs?.modalSubmitButton) {
-    buttonRefs.modalSubmitButton.addEventListener("click", handleFormSubmission);
+    buttonRefs.modalSubmitButton.addEventListener(
+      "click",
+      handleFormSubmission
+    );
   }
   if (formRefs?.formSignup) {
     formRefs.formSignup.addEventListener("submit", handleFormSubmission);
