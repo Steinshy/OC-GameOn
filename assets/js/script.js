@@ -1,18 +1,23 @@
+// =========================
+// DOM Ready Initialization
+// =========================
 document.addEventListener("DOMContentLoaded", () => {
-  const submitForm = () => {
-    window.showConfirmation();
-  };
+  // Footer year update
+  document.getElementById("footer_year").textContent = new Date().getFullYear();
+  initializeModalForm();
 
-  const handleFormSubmission = (e) => {
-    e.preventDefault();
-
-    if (window.validateAllFields()) {
-      submitForm();
-    }
-  };
-
-  window.handleFormSubmission = handleFormSubmission;
-  window.setupEventListeners();
-  const footerYear = document.getElementById("footer_year");
-  footerYear.textContent = new Date().getFullYear();
 });
+
+// =========================
+// Initialization Functions
+// =========================
+const initializeModalForm = () => {
+  if (setupEventListeners) {
+    setupEventListeners();
+  }
+};
+
+// =========================
+// Window Exports
+// =========================
+window.initializeModalForm = initializeModalForm;

@@ -1,0 +1,168 @@
+/* =========================
+  GAMEON LOADER STYLES
+========================= */
+
+/* =========================
+  LOADER CONTAINER
+========================= */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #232323 0%, #1a1a1a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  animation: hideLoader 0.3s ease-in-out 1.2s forwards;
+}
+
+/* =========================
+  LOADER CONTENT
+========================= */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+/* =========================
+  GAMING LOGO SPINNER
+========================= */
+.loader-logo {
+  width: 80px;
+  height: 80px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinLogo 1s linear infinite;
+  position: relative;
+}
+
+.loader-logo::before {
+  content: "🎮";
+  font-size: 2rem;
+  animation: controllerPulse 0.8s ease-in-out infinite;
+}
+
+/* =========================
+  LOADING TEXT
+========================= */
+.loader-text {
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.loader-subtext {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  text-align: center;
+}
+
+/* =========================
+  PROGRESS BAR
+========================= */
+.loader-progress {
+  width: 300px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  border-radius: 2px;
+  animation: progressFill 1.2s ease-in-out forwards;
+}
+
+/* =========================
+  BOUNCING DOTS
+========================= */
+.loader-dots {
+  display: flex;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.loader-dot {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  animation: loaderBounce 0.8s ease-in-out infinite both;
+}
+
+.loader-dot:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.loader-dot:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+/* =========================
+  CONTENT FADE IN
+========================= */
+.main-content {
+  animation: fadeInContent 0.4s ease-out 1.5s both;
+}
+
+/* =========================
+  RESPONSIVE DESIGN
+========================= */
+@media (max-width: 768px) {
+  .loader-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .loader-logo::before {
+    font-size: 1.5rem;
+  }
+
+  .loader-text {
+    font-size: 1.25rem;
+  }
+
+  .loader-progress {
+    width: 250px;
+  }
+}
+
+/* =========================
+  REDUCED MOTION SUPPORT
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  .loader-logo {
+    animation: none;
+  }
+
+  .loader-logo::before {
+    animation: none;
+  }
+
+  .loader-dot {
+    animation: none;
+  }
+
+  .loader-container {
+    animation: hideLoader 0.3s ease-in-out 0.8s forwards;
+  }
+}

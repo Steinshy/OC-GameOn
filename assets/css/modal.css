@@ -1,0 +1,516 @@
+/* =========================
+  MODAL SYSTEM STYLES
+========================= */
+
+/* =========================
+  MODAL BACKDROP & CONTAINER
+========================= */
+/* Modal backdrop */
+.modal {
+  display: none;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 39, 156, 0.4);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Modal visible */
+.modal.show {
+  display: block;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Modal content container */
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  max-height: 90%;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  /* Visual */
+  background-color: var(--color-modal-bg);
+  color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-default);
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  /* Interactions */
+  pointer-events: auto;
+  transition: all var(--transition-normal);
+}
+
+/* =======================
+  MODAL HEADER
+========================= */
+
+/* Modal header container */
+.modal-header {
+  display: none;
+  visibility: hidden;
+  position: relative;
+  flex-shrink: 0;
+
+  /* Layout */
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--space-lg);
+
+  /* Visual styling */
+  background: linear-gradient(135deg, var(--color-modal-bg) 0%, #1a1a1a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal header visible */
+.modal-header.show {
+  display: flex;
+  visibility: visible;
+  transition: all var(--transition-normal);
+}
+
+/* Header content */
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+/* Modal title */
+.header-content h3 {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  text-align: center;
+  margin-bottom: var(--space-sm);
+}
+
+/* Modal subtitle */
+.header-content p {
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin: 0;
+}
+
+/* =======================
+  MODAL CLOSE BUTTON
+========================= */
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  z-index: 10;
+
+  /* Size */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Visual styling */
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--transition-fast);
+}
+
+/* Close button */
+.modal-close i {
+  font-size: 1.5rem;
+  color: var(--color-white);
+}
+
+/* Close button hover */
+.modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* =======================
+  MODAL FORM SECTION
+========================= */
+/* Form section container */
+.form-section {
+  display: none;
+  visibility: hidden;
+  overflow-y: auto;
+}
+
+/* Form section visible */
+.form-section.show {
+  display: grid;
+  visibility: visible;
+}
+
+/* Main form wrapper */
+.main-form {
+  display: grid;
+  padding: var(--space-lg);
+  gap: var(--space-lg);
+}
+
+/* Main info fields */
+.main_info_fields {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* Full-width info fields */
+.main_info_fields .info_field {
+  width: 100%;
+}
+
+/* =======================
+  FORM INPUT FIELDS
+========================= */
+/* Base field container */
+.field,
+.info_field {
+  display: grid;
+  margin-bottom: var(--space-xs);
+}
+
+/* Label */
+.field label,
+.info_field label {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+}
+
+/* Input field base */
+.field input,
+.info_field input {
+  font-size: 1rem;
+  padding: var(--space-sm);
+  color: var(--color-white);
+
+  /* Border and background */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.05);
+
+  /* Smooth transitions for interactive states */
+  transition: border-color var(--transition-normal),
+    background-color var(--transition-normal);
+}
+
+/* Input field focus */
+.field input:focus,
+.info_field input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(227, 63, 44, 0.1);
+}
+
+/* Placeholder text */
+.field input::placeholder,
+.info_field input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* =======================
+  FORM VALIDATION STATES
+========================= */
+
+/* Error message */
+.field .error,
+.info_field .error,
+.radio_choices .error,
+.checkbox_choices .error {
+  display: none;
+  font-size: 1rem;
+  font-weight: var(--font-weight-light);
+  color: var(--color-error);
+  margin-top: var(--space-xs);
+}
+
+/* Show error message and apply error border in one rule */
+.field[data-error-visible="true"] .error,
+.info_field[data-error-visible="true"] .error {
+  display: block;
+}
+
+/* Show error message for fieldset errors (when error is sibling of fieldset) */
+.radio_choices fieldset[data-error-visible="true"] ~ .error,
+.checkbox_choices fieldset[data-error-visible="true"] ~ .error {
+  display: block;
+}
+
+/* Show error border in one rule */
+.field[data-error-visible="true"] input,
+.info_field[data-error-visible="true"] input {
+  border: 2px solid var(--color-error);
+}
+
+/* Show success border in one rule */
+.field[data-success-visible="true"] input,
+.info_field[data-success-visible="true"] input {
+  border: 2px solid var(--color-success);
+}
+
+/* =======================
+  FORM CHOICE CONTROLS
+========================= */
+/* Radio choices */
+.radio_choices {
+  display: grid;
+}
+
+/* Fieldset base styling */
+.radio_choices fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  /* Grid layout */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-xs);
+}
+
+/* Legend */
+.radio_choices legend {
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-white);
+  margin-bottom: var(--space-sm);
+}
+
+/* =======================
+  RADIO BUTTON
+========================= */
+/* Radio button checkmark - circular shape */
+.radio_choices .radio .checkmark {
+  border-radius: 50%;
+}
+
+/* Radio button inner dot (pseudo-element) */
+.radio_choices .radio .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: 70%;
+  width: 70%;
+  border-radius: 50%;
+  background-color: var(--color-success);
+  transform: scale(0);
+  transition: transform var(--transition-fast);
+}
+
+.radio_choices .radio input:checked ~ .checkmark:after {
+  border-color: var(--color-success);
+  transform: scale(1);
+}
+
+/* Radio button hover effect */
+.radio_choices .radio:hover input ~ .checkmark {
+  border-color: var(--color-success);
+}
+
+/* =======================
+  CUSTOM CONTROL BASE STYLES
+========================= */
+/* Base custom control */
+.radio_choices .radio,
+.checkbox_choices .checkbox {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 25px;
+  padding-left: 35px;
+  margin-bottom: var(--space-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide native browser control */
+.radio_choices .radio input,
+.checkbox_choices .checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* =========================
+  CHECKMARK
+========================= */
+/* Base checkmark styling */
+.radio_choices .checkmark,
+.checkbox_choices .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 2px solid var(--color-white);
+  transition: all var(--transition-fast);
+}
+
+/* =========================
+  CHECKBOX
+========================= */
+
+/* Checkbox choices */
+.checkbox_choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Checkbox checkmark container */
+.checkbox_choices .checkbox .checkmark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+/* Checkbox icon */
+.checkbox_choices .checkbox .checkmark i {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* Checkbox checked state */
+.checkbox_choices .checkbox input:checked ~ .checkmark {
+  background-color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+/* Show checkbox icon when checked */
+.checkbox_choices .checkbox input:checked ~ .checkmark i {
+  opacity: 1;
+}
+
+/* Checkbox hover effect */
+.checkbox_choices .checkbox:hover input ~ .checkmark {
+  border-color: var(--color-success);
+}
+
+/* =========================
+  MODAL FOOTER
+========================= */
+/* Modal footer container */
+.modal-footer {
+  display: none;
+  visibility: hidden;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-lg);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal-footer.show {
+  display: flex;
+  visibility: visible;
+}
+
+/* Submit button */
+.modal-footer button {
+  width: 100%;
+  height: 3.5rem;
+  font-size: 1.25rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 100%
+  );
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.modal-footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(227, 63, 44, 0.3);
+}
+
+/* =========================
+  MODAL CONFIRMATION
+========================= */
+
+/* Confirmation section */
+.confirm {
+  display: none;
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.confirm.show {
+  display: flex;
+  flex-direction: column;
+  visibility: visible;
+}
+
+/* Confirmation content */
+.confirm-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  color: var(--color-white);
+}
+
+.confirm-content h2,
+.confirm-content h3 {
+  font-weight: var(--font-weight-semibold);
+}
+
+.confirm-content p {
+  font-weight: var(--font-weight-light);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Confirmation close button */
+.confirm_close {
+  display: flex;
+  justify-content: center;
+}
+
+/* Confirmation close button */
+.confirm_close button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: transform var(--transition-normal);
+}
+
+/* Confirmation close button hover effect */
+.confirm_close button:hover {
+  transform: translateY(-2px);
+}

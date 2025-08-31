@@ -1,23 +1,30 @@
-const handleRealTimeValidation = (e) => {
-  if (window.validateField) {
-    window.validateField(e.target);
-  }
+// =========================
+// Get Required Fields
+// =========================
+const getRequiredFields = () => {
+  // Return actual form fields, radio buttons and checkboxes that require validation
+  const fields = formInputsMapRefs || {};
+  const radioButtons = validationRefs?.radioButtonsInputs || {};
+  const checkboxes = validationRefs?.checkboxesInputs || {};
+  return [
+    ...Object.values(fields),
+    ...Object.values(radioButtons),
+    ...Object.values(checkboxes)
+  ].filter(Boolean);
 };
 
+// =========================
+// Setup Real-time Validation
+// =========================
 const setupRealTimeValidation = () => {
-  if (!window.getRequiredFormFields || !window.validateField) {
+  if (!validateField || !handleRealTimeValidation) {
     console.warn("Real-time validation dependencies not available");
     return;
   }
 
-  const requiredFields = window.getRequiredFormFields();
-
+  const requiredFields = getRequiredFields();
   requiredFields.forEach((input) => {
-    // Remove existing listeners to prevent duplicates
-    input.removeEventListener("input", handleRealTimeValidation);
-    input.removeEventListener("change", handleRealTimeValidation);
-
-    // Add new listeners based on input type
+    // Add listeners based on input type
     if (input.type === "radio" || input.type === "checkbox") {
       input.addEventListener("change", handleRealTimeValidation);
     } else {
@@ -26,22 +33,8 @@ const setupRealTimeValidation = () => {
   });
 };
 
-const removeRealTimeValidation = () => {
-  if (!window.getRequiredFormFields) {
-    return;
-  }
-
-  const requiredFields = window.getRequiredFormFields();
-
-  requiredFields.forEach((input) => {
-    input.removeEventListener("input", handleRealTimeValidation);
-    input.removeEventListener("change", handleRealTimeValidation);
-  });
-};
-
 // =========================
 // Window Exports
 // =========================
-window.handleRealTimeValidation = handleRealTimeValidation;
 window.setupRealTimeValidation = setupRealTimeValidation;
-window.removeRealTimeValidation = removeRealTimeValidation;
+window.getRequiredFields = getRequiredFields;

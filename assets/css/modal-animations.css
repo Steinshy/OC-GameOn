@@ -1,0 +1,60 @@
+/* =========================
+  MODAL ANIMATIONS
+========================= */
+
+/* =========================
+  KEYFRAME ANIMATIONS
+========================= */
+
+/* Slide down animation from top to center position */
+@keyframes modalSlideFromTop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Slide up animation from center to top position */
+@keyframes modalSlideToTop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+}
+
+/* Fade out animation for modal backdrop */
+@keyframes modalFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* =========================
+  ANIMATION CLASSES
+========================= */
+
+/* Apply animation only when user has not requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .modal-content.show {
+    animation: modalSlideFromTop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .modal-content.closing {
+    animation: modalSlideToTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .modal.closing {
+    animation: modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+}
