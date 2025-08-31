@@ -1,59 +1,66 @@
 {
   "name": "GameOn - Marathon national de jeux vidéos",
   "short_name": "GameOn",
-  "description": "Vous aimez jouer ? Notre prochain évènement gaming est ouvert aux réservations... Places limitées !",
+  "description": "Application web progressive pour l'inscription au marathon national de jeux vidéos. Interface moderne avec validation en temps réel et accessibilité WCAG.",
 
-  "start_url": "/?source=pwa",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "any",
+  "orientation": "portrait-primary",
 
   "theme_color": "#e33f2c",
-  "background_color": "#ffffff",
+  "background_color": "#232323",
 
-  "categories": ["games", "sports", "events", "entertainment"],
+  "categories": ["games", "sports", "events", "entertainment", "lifestyle"],
   "lang": "fr",
 
   "icons": [
     {
-      "src": "/assets/favicons/favicon-96x96.png",
+      "src": "./assets/favicons/favicon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/favicons/web-app-manifest-192x192.png",
+      "src": "./assets/favicons/web-app-manifest-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/favicons/web-app-manifest-512x512.png",
+      "src": "./assets/favicons/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/favicons/apple-touch-icon.png",
+      "src": "./assets/favicons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/assets/favicons/favicon.svg",
+      "src": "./assets/favicons/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any"
+      "purpose": "any monochrome"
     }
   ],
 
   "screenshots": [
     {
-      "src": "/assets/img/png/bg_img.jpg",
+      "src": "./assets/img/webp/bg_img.webp",
+      "sizes": "1024x768",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "Page d'accueil GameOn avec formulaire d'inscription"
+    },
+    {
+      "src": "./assets/img/png/bg_img.jpg",
       "sizes": "1024x768",
       "type": "image/jpeg",
       "form_factor": "wide",
-      "label": "Page d'accueil GameOn"
+      "label": "Interface principale GameOn"
     }
   ],
 
@@ -62,26 +69,26 @@
 
   "shortcuts": [
     {
-      "name": "S'inscrire",
+      "name": "S'inscrire au tournoi",
       "short_name": "Inscription",
-      "description": "S'inscrire au marathon de jeux vidéos",
-      "url": "/?action=inscription",
+      "description": "Ouvrir directement le formulaire d'inscription au marathon",
+      "url": "/index.html#inscription",
       "icons": [
         {
-          "src": "/assets/favicons/favicon-96x96.png",
+          "src": "./assets/favicons/favicon-96x96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Accueil",
-      "short_name": "Home",
-      "description": "Retour à l'accueil GameOn",
-      "url": "/?action=home",
+      "name": "Informations",
+      "short_name": "Infos",
+      "description": "Voir les détails de l'événement",
+      "url": "/index.html#details",
       "icons": [
         {
-          "src": "/assets/favicons/favicon-96x96.png",
+          "src": "./assets/favicons/favicon-96x96.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -97,7 +104,17 @@
     "client_mode": "navigate-existing"
   },
 
-  "navigation_scope": "/",
-  "handle_links": "preferred",
-  "protocol_handlers": []
+  "display_override": ["window-controls-overlay", "standalone"],
+  "file_handlers": [],
+  "protocol_handlers": [],
+
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
