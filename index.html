@@ -116,14 +116,14 @@
         </div>
 
         <div class="desktop_container_button">
-          <button class="desktop_btn_signup" id="signup-desktop" aria-describedby="signup_description">Je
+          <button class="desktop_btn_signup" id="signup-desktop">Je
             m'inscris</button>
         </div>
 
 
       </div>
       <div class="mobile_container_button">
-        <button class="mobile_btn_signup" id="signup-mobile" aria-describedby="signup_description">Je
+        <button class="mobile_btn_signup" id="signup-mobile">Je
           m'inscris</button>
       </div>
     </main>
@@ -205,44 +205,44 @@
                     aria-label="requis">*</span></legend>
                 <label class="radio">New York
                   <input type="radio" id="radio-new-york" name="location" value="New York"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
 
                 <label class="radio">San Francisco
                   <input type="radio" id="radio-san-francisco" name="location" value="San Francisco"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
 
                 <label class="radio">Seattle
                   <input type="radio" id="radio-seattle" name="location" value="Seattle"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
 
                 <label class="radio">Chicago
                   <input type="radio" id="radio-chicago" name="location" value="Chicago"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
 
                 <label class="radio">Boston
                   <input type="radio" id="radio-boston" name="location" value="Boston"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
 
                 <label class="radio">Portland
                   <input type="radio" id="radio-portland" name="location" value="Portland"
-                    aria-describedby="tournament_error">
+                    aria-describedby="tournament-error">
                   <span class="checkmark"></span>
                 </label>
               </fieldset>
               <span id="tournament-error" class="error" aria-live="polite">Un lieu de participation est requis.</span>
             </div>
 
-            <div class="checkbox_choices">
+            <fieldset class="checkbox_choices">
               <legend>Conditions et notifications</legend>
               <div class="field" id="checkbox-terms" data-error-visible="false">
                 <label class="checkbox" id="terms_checkbox"
@@ -269,7 +269,7 @@
                 </label>
               </div>
 
-            </div>
+            </fieldset>
           </form>
         </div>
 
@@ -278,10 +278,9 @@
         </div>
 
         <!-- Modal Confirmation -->
-        <div class="confirm" id="confirm" role="dialog" aria-modal="true" aria-labelledby="confirm-title"
-          aria-describedby="registration-description">
+        <div class="confirm" id="confirm" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
           <div class="confirm-content">
-            <h2>Merci !</h2>
+            <h2 id="confirm-title">Merci !</h2>
             <h3>Votre réservation a été reçue.</h3>
             <p>Vous recevrez un e-mail de confirmation dans quelques instants.</p>
             <div class="confirm_close">

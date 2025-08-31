@@ -4,6 +4,8 @@
 [![CSS3](https://img.shields.io/badge/CSS3-CSS3-1572B6?logo=css3&logoColor=white&style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-JavaScript-F7DF1E?logo=javascript&logoColor=black&style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![PWA](https://img.shields.io/badge/PWA-Progressive%20Web%20App-5A0FC8?style=for-the-badge)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+[![HTML Valid](https://img.shields.io/badge/HTML-Valid-E34F26?logo=html5&logoColor=white&style=for-the-badge)](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsteinshy.github.io%2F%3FCSS3)
+[![CSS Valid](https://img.shields.io/badge/CSS-Valid-1572B6?logo=css3&logoColor=white&style=for-the-badge)](https://jigsaw.w3.org/css-validator/check/referer)
 
 Une application web progressive (PWA) moderne et accessible pour l'inscription au marathon national de jeux vidéos GameOn. Ce projet implémente les meilleures pratiques en matière d'accessibilité, de performance et d'expérience utilisateur.
 
