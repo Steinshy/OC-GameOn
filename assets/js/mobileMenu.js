@@ -1,36 +1,33 @@
-// Register DOM Element References
-const mobileMenuRefs = {
-  menu: document.getElementById("mobile_menu"),
-  toggleButton: document.getElementById("btn_mobile_menu")
-};
+// =========================
+// Mobile Navigation Menu
+// =========================
+const mobileMenu = document.getElementById("mobile_menu");
+const mobileMenuButton = document.getElementById("btn_mobile_menu");
 
-// Open Mobile Menu
-const openMobileMenu = () => {
-  mobileMenuRefs.menu.classList.add("show");
-  mobileMenuRefs.toggleButton.setAttribute("aria-expanded", "true");
-  mobileMenuRefs.menu.setAttribute("aria-hidden", "false");
-};
-
-// Close Mobile Menu by Field ID
 const closeMobileMenu = () => {
-  mobileMenuRefs.menu.classList.remove("show");
-  mobileMenuRefs.toggleButton.setAttribute("aria-expanded", "false");
-  mobileMenuRefs.menu.setAttribute("aria-hidden", "true");
+  mobileMenu.classList.remove("show");
+  mobileMenuButton.setAttribute("aria-expanded", "false");
 };
 
-// Toggle Mobile Menu
-const toggleMobileMenu = () =>
-  mobileMenuRefs.menu.classList.contains("show")
-    ? closeMobileMenu()
-    : openMobileMenu();
+const toggleMobileMenu = () => {
+  const isOpen = mobileMenu.classList.toggle("show");
+  mobileMenuButton.setAttribute("aria-expanded", isOpen);
+};
 
-// Check if Mobile Menu is Visible
-const isMobileMenuVisible = () =>
-  mobileMenuRefs.menu.classList.contains("show");
+mobileMenuButton.addEventListener("click", toggleMobileMenu);
 
-// =========================
-// Window Exports
-// =========================
-window.closeMobileMenu = closeMobileMenu;
-window.toggleMobileMenu = toggleMobileMenu;
-window.mobileMenuRefs = mobileMenuRefs;
+// Close when clicking outside the menu
+document.addEventListener("click", (event) => {
+  if (
+    mobileMenu.classList.contains("show") &&
+    !mobileMenu.contains(event.target) &&
+    !mobileMenuButton.contains(event.target)
+  ) {
+    closeMobileMenu();
+  }
+});
+
+// Close with the Escape key
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeMobileMenu();
+});
