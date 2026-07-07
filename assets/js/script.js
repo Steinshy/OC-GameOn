@@ -1,23 +1,6 @@
 // =========================
-// DOM Ready Initialization
+// GameOn - Entry Point
 // =========================
-document.addEventListener("DOMContentLoaded", () => {
-  // Footer year update
-  document.getElementById("footer_year").textContent = new Date().getFullYear();
-  initializeModalForm();
-
-});
-
-// =========================
-// Initialization Functions
-// =========================
-const initializeModalForm = () => {
-  if (setupEventListeners) {
-    setupEventListeners();
-  }
-};
-
-// =========================
-// Window Exports
-// =========================
-window.initializeModalForm = initializeModalForm;
+// Scripts load at the end of <body>, so the DOM is already available
+document.getElementById("footer_year").textContent = new Date().getFullYear();
+setupModalForm();

@@ -18,9 +18,9 @@ GameOn est une landing page interactive avec un système de modal avancé permet
 - **Formulaire d'inscription avancé** avec validation en temps réel et feedback utilisateur
 - **Navigation mobile** avec menu hamburger animé
 - **Écran de chargement** avec animations gaming personnalisées
-- **Progressive Web App (PWA)** avec manifest et service worker
+- **Progressive Web App (PWA)** avec manifest installable
 - **Accessibilité WCAG** complète avec ARIA et navigation clavier
-- **Performance optimisée** avec images WebP, lazy loading et animations CSS
+- **Performance optimisée** avec images WebP et animations CSS
 
 ## 🚀 Démonstration
 
@@ -65,7 +65,7 @@ GameOn est une landing page interactive avec un système de modal avancé permet
 - **JavaScript ES6+** - Logique modulaire pure (sans frameworks)
 - **PWA** - Progressive Web App avec manifest.json
 - **Font Awesome 6.7.2** - Icônes vectorielles
-- **Google Fonts** - Typographie (DM Sans, Roboto) avec preconnect
+- **Google Fonts** - Typographie (DM Sans) avec preconnect
 
 ## 📁 Structure du Projet
 
@@ -73,31 +73,23 @@ GameOn est une landing page interactive avec un système de modal avancé permet
 GameOn/
 ├── assets/
 │   ├── css/
-│   │   ├── style.css              # Styles principaux et design system
-│   │   ├── modal.css              # Styles du système de modal
-│   │   ├── modal-animations.css   # Animations de modal
-│   │   ├── mobile-animations.css  # Animations du menu mobile
-│   │   ├── loader.css             # Styles de l'écran de chargement
-│   │   └── loader-animations.css  # Animations de chargement
+│   │   ├── style.css              # Design system, layout, header, responsive
+│   │   ├── modal.css              # Modal, formulaire, validation, animations
+│   │   └── loader.css             # Écran de chargement et ses animations
 │   ├── js/
 │   │   ├── script.js              # Point d'entrée principal
-│   │   ├── mobileMenu.js          # Gestion du menu mobile
+│   │   ├── mobileMenu.js          # Menu mobile autonome
 │   │   └── modalForm/
-│   │       ├── modalForm.js       # Références DOM du modal
-│   │       ├── validation.js      # Logique de validation
-│   │       └── utils/
-│   │           ├── eventAttachers.js    # Attachement des événements
-│   │           ├── eventListeners.js   # Gestion des événements
-│   │           ├── handlers.js         # Gestionnaires d'événements
-│   │           ├── formReset.js        # Reset et gestion d'états
-│   │           ├── realTimeValidation.js # Validation temps réel
-│   │           └── validationHelpers.js # Utilitaires de validation
+│   │       ├── refs.js            # Références DOM du modal et du formulaire
+│   │       ├── validation.js      # Règles et validation temps réel
+│   │       └── modal.js           # Ouverture/fermeture, reset, soumission
 │   ├── img/
-│   │   ├── png/                   # Images PNG (logo, background)
-│   │   └── webp/                  # Images WebP optimisées
+│   │   ├── png/                   # Image d'arrière-plan (fallback JPG)
+│   │   └── webp/                  # Image d'arrière-plan optimisée WebP
 │   ├── favicons/                  # Collection complète d'icônes PWA
 │   └── manifest.json              # Métadonnées Progressive Web App
 ├── index.html                     # Page principale avec structure sémantique
+├── CLAUDE.md                      # Guide d'architecture pour contributeurs/IA
 └── README.md                      # Documentation complète
 ```
 
@@ -145,29 +137,27 @@ Le site est optimisé pour :
 - **Validation temps réel** : Feedback immédiat lors de la saisie
 - **États visuels** : Bordures colorées (rouge/vert) selon la validité
 - **Messages contextuels** : Erreurs spécifiques par champ avec aria-live
-- **Prévention de soumission** : Bouton désactivé si formulaire invalide
+- **Prévention de soumission** : Soumission bloquée tant que le formulaire est invalide
 - **Reset automatique** : Nettoyage complet après soumission réussie
 - **Gestion des focus** : Navigation clavier optimisée
 
 ### Architecture Modulaire
 
-Le système de validation est organisé en modules spécialisés :
+Le système de modal est organisé en trois modules :
 
-- `validation.js` : Logique de validation par champ
-- `realTimeValidation.js` : Validation en temps réel
-- `validationHelpers.js` : Utilitaires pour les états visuels
-- `handlers.js` : Gestionnaires d'événements de soumission
+- `refs.js` : Références DOM centralisées (modal, formulaire, boutons)
+- `validation.js` : Règles de validation, états visuels et validation temps réel
+- `modal.js` : Ouverture/fermeture, reset du formulaire et soumission
 
 ## 🔧 Performance & Optimisations
 
 ### Optimisations Implémentées
 
-- **Images** : Format WebP avec fallback PNG/JPG automatique
-- **Fonts** : Preconnect et preload pour Google Fonts (DM Sans, Roboto)
-- **Loading** : Lazy loading sur toutes les images avec `loading="lazy"`
+- **Images** : Format WebP avec fallback JPG automatique
+- **Fonts** : Preconnect pour Google Fonts (DM Sans)
+- **Loading** : `fetchpriority="high"` sur l'image principale (LCP)
 - **CSS** : Variables CSS personnalisées et animations optimisées
-- **JavaScript** : Architecture modulaire avec chargement différé
-- **PWA** : Mise en cache avec service worker (prêt pour implémentation)
+- **JavaScript** : Architecture modulaire légère, chargée en fin de page
 - **Animations** : Support `prefers-reduced-motion` pour l'accessibilité
 - **Compression** : Assets optimisés (images, favicons multi-formats)
 

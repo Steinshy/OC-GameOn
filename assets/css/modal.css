@@ -77,6 +77,8 @@
   align-items: center;
   flex: 1;
   position: relative;
+  /* Keep the centered title clear of the absolute close button */
+  padding: 0 2.5rem;
 }
 
 .header-content h3 {
@@ -177,7 +179,9 @@
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
   background-color: rgba(255, 255, 255, 0.05);
-  transition: border-color var(--transition-normal), background-color var(--transition-normal);
+  transition:
+    border-color var(--transition-normal),
+    background-color var(--transition-normal);
 }
 
 /* Input Field Focus */
@@ -194,7 +198,6 @@
 .info_field input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
-
 
 /* =======================
   Form Choice Controls
@@ -246,16 +249,15 @@
   transition: transform var(--transition-fast);
 }
 
-.radio_choices .radio input:checked~.checkmark:after {
+.radio_choices .radio input:checked ~ .checkmark:after {
   border-color: var(--color-success);
   transform: scale(1);
 }
 
 /* Radio Button Hover */
-.radio_choices .radio:hover input~.checkmark {
+.radio_choices .radio:hover input ~ .checkmark {
   border-color: var(--color-success);
 }
-
 
 /* =======================
   CUSTOM CONTROL BASE STYLES
@@ -355,8 +357,8 @@
 }
 
 /* Show Fieldset Error Messages for Fieldset Errors */
-.radio_choices fieldset[data-error-visible="true"]~.error,
-.checkbox_choices fieldset[data-error-visible="true"]~.error {
+.radio_choices fieldset[data-error-visible="true"] ~ .error,
+.checkbox_choices fieldset[data-error-visible="true"] ~ .error {
   display: block;
 }
 
@@ -373,18 +375,18 @@
 }
 
 /* Checkbox Checked State */
-.checkbox_choices .checkbox input:checked~.checkmark {
+.checkbox_choices .checkbox input:checked ~ .checkmark {
   background-color: var(--color-success);
   border-color: var(--color-success);
 }
 
 /* Show Checkbox Checkmark Icon */
-.checkbox_choices .checkbox input:checked~.checkmark i {
+.checkbox_choices .checkbox input:checked ~ .checkmark i {
   opacity: 1;
 }
 
 /* Checkbox Checkmark Hover */
-.checkbox_choices .checkbox:hover input~.checkmark {
+.checkbox_choices .checkbox:hover input ~ .checkmark {
   border-color: var(--color-success);
 }
 
@@ -409,7 +411,6 @@
 /* Submit Button */
 .modal-footer button {
   width: 100%;
-
 }
 
 /* =========================
@@ -435,6 +436,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
+  padding: var(--space-lg);
+  text-align: center;
   color: var(--color-white);
 }
 
@@ -452,4 +455,54 @@
 .confirm_close {
   display: flex;
   justify-content: center;
+}
+/* =========================
+  Modal Animations
+========================= */
+@keyframes modalSlideFromTop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes modalSlideToTop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100vh);
+  }
+}
+
+@keyframes modalFadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .modal-content.show {
+    animation: modalSlideFromTop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .modal-content.closing {
+    animation: modalSlideToTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .modal.closing {
+    animation: modalFadeOut 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
 }
