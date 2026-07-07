@@ -156,6 +156,16 @@ main {
   position: relative;
 }
 
+/* Explicit tap target so the button keeps its size even if the icon
+   font fails to load (44px = recommended minimum touch target) */
+.header_nav_links button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
 .header_nav_links button i {
   color: var(--color-primary);
   font-size: 1.5rem;

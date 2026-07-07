@@ -77,6 +77,8 @@
   align-items: center;
   flex: 1;
   position: relative;
+  /* Keep the centered title clear of the absolute close button */
+  padding: 0 2.5rem;
 }
 
 .header-content h3 {
@@ -434,6 +436,8 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-lg);
+  padding: var(--space-lg);
+  text-align: center;
   color: var(--color-white);
 }
 
